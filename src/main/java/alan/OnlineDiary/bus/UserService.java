@@ -5,6 +5,9 @@
  */
 package alan.OnlineDiary.bus;
 
+import alan.OnlineDiary.ents.User;
+import alan.OnlineDiary.pers.UserFacade;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -13,7 +16,15 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class UserService {
+    
+    @EJB
+    private UserFacade uf;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
+    
+    public User createNewUser(User u){
+        uf.create(u);
+        return u;
+    }
 }

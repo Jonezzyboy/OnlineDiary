@@ -5,6 +5,9 @@
  */
 package alan.OnlineDiary.ctrl;
 
+import alan.OnlineDiary.bus.UserService;
+import alan.OnlineDiary.ents.User;
+import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 
@@ -22,4 +25,21 @@ public class UserCtrl {
     public UserCtrl() {
     }
     
+    private User newUser = new User();
+    
+    public User getNewUser(){
+        return newUser;
+    }
+    
+    public void setNewUser(){
+        this.newUser = newUser;
+    }
+    
+    @EJB
+    private UserService us;
+    
+    public String insertUser(){
+        us.createNewUser(newUser);
+        return "";
+    }
 }

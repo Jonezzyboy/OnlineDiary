@@ -22,15 +22,24 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String fName;
-    private String lName;
+    private String firstName;
+    private String lastName;
     private String username;
     private String password;
+    private String confirm;
     private String email;
     private String phone;
     private String address;
     private String postcode;
 
+    public String getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
+    }
+    
     public String getAddress() {
         return address;
     }
@@ -79,20 +88,20 @@ public class User implements Serializable {
         this.phone = phone;
     }
 
-    public String getfName() {
-        return fName;
+    public String getFirstName() {
+        return firstName;
     }
     
-    public void setfName(String fName) {
-        this.fName = fName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
     
-    public String getlName() {
-        return lName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Long getId() {
