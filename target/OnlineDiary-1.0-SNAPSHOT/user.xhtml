@@ -26,7 +26,7 @@
             <h:inputText id="postcode" value="#{userCtrl.newUser.postcode}"/>
             <h:outputLabel value="Phone Number:"/>
             <h:inputText id="phone" value="#{userCtrl.newUser.phone}"/>
-            <h:commandButton value="Submit"/>
+            <h:commandButton action="#{userCtrl.insertUser()}" value="Submit"/>
         </h:form>
     </h:body>
 </html>
