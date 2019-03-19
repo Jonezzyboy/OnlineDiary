@@ -3,30 +3,51 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Register</title>
+        <link rel="stylesheet" href="CSS/formStyle.css"/>
     </h:head>
     <h:body>
-        <h1>Create Account</h1>
         <h:form id="createID">
-            <h:outputLabel value="First Name:"/>
-            <h:inputText id="firstName" value="#{userCtrl.newUser.firstName}"/>
-            <h:outputLabel value="Last Name:"/>
-            <h:inputText id="lastName" value="#{userCtrl.newUser.lastName}"/>
+            <h1>Create Account</h1>
+            <div>
+                <h:outputLabel value="First Name:"/>
+                <h:inputText id="firstName" value="#{userCtrl.newUser.firstName}"/>
+            </div>
+            <div>
+                <h:outputLabel value="Last Name:"/>
+                <h:inputText id="lastName" value="#{userCtrl.newUser.lastName}"/>
+            </div>
+            <div>
             <h:outputLabel value="Username: "/>
             <h:inputText id="username" value="#{userCtrl.newUser.username}"/>
+            </div>
+            <div>
             <h:outputLabel value="Password:"/>
             <h:inputSecret id="password" value="#{userCtrl.newUser.password}"/>
+            </div>
+            <div>
             <h:outputLabel value="Confirm Password:"/>
             <h:inputSecret id="confirm" value="#{userCtrl.newUser.confirm}"/>
+            </div>
+            <div>
             <h:outputLabel value="Email:"/>
             <h:inputText id="email" value="#{userCtrl.newUser.email}"/>
+            </div>
+            <div>
             <h:outputLabel value="Address:"/>
             <h:inputText id="address" value="#{userCtrl.newUser.address}"/>
+            </div>
+            <div>
             <h:outputLabel value="Postcode:"/>
             <h:inputText id="postcode" value="#{userCtrl.newUser.postcode}"/>
+            </div>
+            <div>
             <h:outputLabel value="Phone Number:"/>
             <h:inputText id="phone" value="#{userCtrl.newUser.phone}"/>
+            </div>
+            <div>
             <h:commandButton action="#{userCtrl.insertUser()}" value="Submit"/>
+            </div>
         </h:form>
     </h:body>
 </html>
