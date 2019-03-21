@@ -40,6 +40,6 @@ public class UserCtrl {
     
     public String insertUser(){
         us.createNewUser(newUser);
-        return "";
+        return "index.html?faces-redirect=true";
     }
 }
