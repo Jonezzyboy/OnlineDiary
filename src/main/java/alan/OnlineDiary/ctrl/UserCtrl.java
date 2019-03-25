@@ -62,11 +62,7 @@ public class UserCtrl {
     }
     
     public String validateUser(){
-        Boolean correctDetails = us.validateLogin(username, password);
-        if(correctDetails == false){
-            return "login.xhtml?faces-redirect=true";
-        }else{
-            return "index.html?faces-redirect=true";
-        }
+        String newPage = us.validateLogin(username, password);
+        return newPage;
     }
 }

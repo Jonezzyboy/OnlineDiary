@@ -28,9 +28,9 @@ public class UserService {
         return u;
     }
     
-    public Boolean validateLogin(String username, String password){
-       boolean userExists = true;
-       if(uf.findUsersByUsername(username) == null || uf.findUsersByPassword(password) == null) userExists = false;
+    public String validateLogin(String username, String password){
+       String userExists = "index.html?faces-redirect=true";
+       if(uf.findUsersByUsername(username) == null || uf.findUsersByPassword(password) == null) userExists = "login.xhtml?faces-redirect=true";
        return userExists;
     }
 }
