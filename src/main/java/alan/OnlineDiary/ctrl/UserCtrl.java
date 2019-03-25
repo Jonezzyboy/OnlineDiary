@@ -57,8 +57,8 @@ public class UserCtrl {
     private UserService us;
     
     public String insertUser(){
-        us.createNewUser(newUser);
-        return "login.xhtml?faces-redirect=true";
+        String newPage = us.createNewUser(newUser);
+        return newPage;
     }
     
     public String loginUser(){

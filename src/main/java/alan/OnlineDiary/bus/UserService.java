@@ -23,16 +23,20 @@ public class UserService {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     
-    public User createNewUser(User u){
-       // Fix duplicate entry validation
-       // Boolean userExists = checkDuplicates(u);
-        uf.create(u);
-        return u;
+    public String createNewUser(User u){
+        // Fix duplicate entry validation
+        Boolean userExists = checkDuplicates(u);
+        if(userExists == false){
+            uf.create(u);
+            return "login.xhtml?faces-redirect=true";
+        }else{
+            return "user.xhtml?faces-redirect=true";
+        }
     }
     
     public Boolean checkDuplicates(User u){
-        Boolean userExists = false;
-        if(uf.find(u) == u) userExists = true;
+        Boolean userExists = true;
+        if(uf.findUsersByUsername(u.getUsername()) == null && uf.findUsersByEmail(u.getEmail()) == null) userExists = false;
         return userExists;
     }
     
