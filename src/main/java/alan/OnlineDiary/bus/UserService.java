@@ -27,4 +27,10 @@ public class UserService {
         uf.create(u);
         return u;
     }
+    
+    public Boolean validateLogin(String username, String password){
+       boolean usernameExists = true;
+       if(uf.findUsersByUsername(username) == null || uf.findUsersByPassword(password) == null) usernameExists = false;
+       return usernameExists;
+    }
 }
