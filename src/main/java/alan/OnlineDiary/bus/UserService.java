@@ -24,8 +24,16 @@ public class UserService {
     // "Insert Code > Add Business Method")
     
     public User createNewUser(User u){
+       // Fix duplicate entry validation
+       // Boolean userExists = checkDuplicates(u);
         uf.create(u);
         return u;
+    }
+    
+    public Boolean checkDuplicates(User u){
+        Boolean userExists = false;
+        if(uf.find(u) == u) userExists = true;
+        return userExists;
     }
     
     public String validateLogin(String username, String password){
