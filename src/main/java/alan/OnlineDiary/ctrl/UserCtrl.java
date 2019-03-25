@@ -61,7 +61,7 @@ public class UserCtrl {
         return "login.xhtml?faces-redirect=true";
     }
     
-    public String validateUser(){
+    public String loginUser(){
         String newPage = us.validateLogin(username, password);
         return newPage;
     }

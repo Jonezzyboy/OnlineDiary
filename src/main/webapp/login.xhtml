@@ -12,13 +12,15 @@
             <div>
                 <h:outputLabel value="Username: "/>
                 <h:inputText id="username" value="#{userCtrl.username}"/>
+                <h:message for="username"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Password:"/>
                 <h:inputSecret id="password" value="#{userCtrl.password}"/>
+                <h:message for="password"></h:message>
             </div>
             <div>
-                <h:commandButton action="#{userCtrl.validateUser()}" value="Login"/>
+                <h:commandButton action="#{userCtrl.loginUser()}" value="Login"/>
             </div>
         </h:form>
     </h:body>
