@@ -33,6 +33,13 @@ h1 {
     justify-content: center;
 }
 
+a{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
 input[type=text],
 input[type=password] {
     width: 100%;
