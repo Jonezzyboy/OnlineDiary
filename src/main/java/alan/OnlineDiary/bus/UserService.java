@@ -42,7 +42,7 @@ public class UserService {
     
     public String validateLogin(String username, String password){
        String userExists = "index.html?faces-redirect=true";
-       if(uf.findUsersByUsername(username) == null || uf.findUsersByPassword(password) == null) userExists = "login.xhtml?faces-redirect=true";
+       if(uf.findUserByCredentials(username, password) == null) userExists = "login.xhtml?faces-redirect=true";
        return userExists;
     }
 }
