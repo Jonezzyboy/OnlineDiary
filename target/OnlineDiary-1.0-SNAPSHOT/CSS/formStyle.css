@@ -38,6 +38,7 @@ a{
     align-items: center;
     justify-content: center;
     text-decoration: none;
+    padding-top: 20px;
 }
 
 input[type=text],
