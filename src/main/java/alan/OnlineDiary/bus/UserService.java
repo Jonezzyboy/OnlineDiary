@@ -16,33 +16,36 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class UserService {
-    
+
     @EJB
     private UserFacade uf;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    
-    public String createNewUser(User u){
+    public String createNewUser(User u) {
         // Fix duplicate entry validation
         Boolean userExists = checkDuplicates(u);
-        if(userExists == false){
+        if (userExists == false) {
             uf.create(u);
             return "login.xhtml?faces-redirect=true";
-        }else{
+        } else {
             return "user.xhtml?faces-redirect=true";
         }
     }
-    
-    public Boolean checkDuplicates(User u){
+
+    public Boolean checkDuplicates(User u) {
         Boolean userExists = true;
-        if(uf.findUsersByUsername(u.getUsername()) == null && uf.findUsersByEmail(u.getEmail()) == null) userExists = false;
+        if (uf.findUsersByUsername(u.getUsername()) == null && uf.findUsersByEmail(u.getEmail()) == null) {
+            userExists = false;
+        }
         return userExists;
     }
-    
-    public String validateLogin(String username, String password){
-       String userExists = "index.xhtml?faces-redirect=true";
-       if(uf.findUserByCredentials(username, password) == null) userExists = "login.xhtml?faces-redirect=true";
-       return userExists;
+
+    public String validateLogin(String username, String password) {
+        String userExists = "index.xhtml?faces-redirect=true";
+        if (uf.findUserByCredentials(username, password) == null) {
+            userExists = "login.xhtml?faces-redirect=true";
+        }
+        return userExists;
     }
 }
