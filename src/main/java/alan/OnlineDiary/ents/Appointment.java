@@ -6,11 +6,13 @@
 package alan.OnlineDiary.ents;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,20 +26,30 @@ public class Appointment implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long appointment_id;
     @Temporal(TemporalType.DATE)
-    private java.util.Date date;
+    private java.util.Date creationDate;
     @Temporal(TemporalType.TIME)
     private java.util.Date startTime;
     @Temporal(TemporalType.TIME)
     private java.util.Date endTime;
+    @ManyToMany(mappedBy="appointments")
+    private ArrayList<User> users;
 
-    public Date getDate() {
-        return date;
+    public ArrayList<User> getUsers() {
+        return users;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Date getStartTime() {
@@ -57,17 +69,17 @@ public class Appointment implements Serializable {
     }
 
     public Long getId() {
-        return id;
+        return appointment_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long appointment_id) {
+        this.appointment_id = appointment_id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (appointment_id != null ? appointment_id.hashCode() : 0);
         return hash;
     }
 
@@ -78,7 +90,7 @@ public class Appointment implements Serializable {
             return false;
         }
         Appointment other = (Appointment) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.appointment_id == null && other.appointment_id != null) || (this.appointment_id != null && !this.appointment_id.equals(other.appointment_id))) {
             return false;
         }
         return true;
@@ -86,7 +98,7 @@ public class Appointment implements Serializable {
 
     @Override
     public String toString() {
-        return "alan.OnlineDiary.ents.Appointment[ id=" + id + " ]";
+        return "alan.OnlineDiary.ents.Appointment[ id=" + appointment_id + " ]";
     }
     
 }

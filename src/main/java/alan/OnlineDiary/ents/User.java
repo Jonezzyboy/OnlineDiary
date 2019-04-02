@@ -6,11 +6,14 @@
 package alan.OnlineDiary.ents;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,7 +27,7 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long user_id;
     private String firstName;
     private String lastName;
     private String username;
@@ -34,6 +37,20 @@ public class User implements Serializable {
     private String phone;
     private String address;
     private String postcode;
+    @ManyToMany
+    @JoinTable(
+        name = "User_Appointment",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "appointment_id"))
+    private ArrayList<Appointment> appointments;
+
+    public ArrayList<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(ArrayList<Appointment> appointments) {
+        this.appointments = appointments;
+    }
 
     public String getConfirm() {
         return confirm;
@@ -108,17 +125,17 @@ public class User implements Serializable {
     }
 
     public Long getId() {
-        return id;
+        return user_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long user_id) {
+        this.user_id = user_id;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (user_id != null ? user_id.hashCode() : 0);
         return hash;
     }
 
@@ -129,7 +146,7 @@ public class User implements Serializable {
             return false;
         }
         User other = (User) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.user_id == null && other.user_id != null) || (this.user_id != null && !this.user_id.equals(other.user_id))) {
             return false;
         }
         return true;
@@ -137,7 +154,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "alan.OnlineDiary.ents.User[ id=" + id + " ]";
+        return "alan.OnlineDiary.ents.User[ id=" + user_id + " ]";
     }
     
 }
