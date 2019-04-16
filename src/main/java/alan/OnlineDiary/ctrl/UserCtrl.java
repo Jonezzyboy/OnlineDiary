@@ -10,6 +10,8 @@ import alan.OnlineDiary.ents.User;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -59,6 +61,7 @@ public class UserCtrl {
         if (us.validateLogin(newUser.getUsername(), newUser.getPassword()) == true) {
             return "index.xhtml?faces-redirect=true";
         }else{
+            FacesContext.getCurrentInstance().addMessage("loginID:logbttn", new FacesMessage("Wrong username or password"));
             return null;
         }
     }
