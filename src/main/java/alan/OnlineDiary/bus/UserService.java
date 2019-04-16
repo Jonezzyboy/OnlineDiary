@@ -25,7 +25,6 @@ public class UserService {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     public Boolean createNewUser(User u, String confirm) {
-        // Fix duplicate entry validation
         Boolean passwordsMatch = checkPasswords(u, confirm);
         Boolean userExists = checkDuplicates(u);
         if (userExists == false && passwordsMatch == true) {

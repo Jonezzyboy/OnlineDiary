@@ -26,7 +26,7 @@ public class UserCtrl {
      */
     public UserCtrl() {
     }
-    
+
     private User newUser = new User();
     private String confirm;
 
@@ -38,29 +38,29 @@ public class UserCtrl {
         this.confirm = confirm;
     }
 
-    public User getNewUser(){
+    public User getNewUser() {
         return newUser;
     }
-    
-    public void setNewUser(){
+
+    public void setNewUser() {
         this.newUser = newUser;
     }
-    
+
     @EJB
     private UserService us;
-    
-    public String insertUser(){
+
+    public String insertUser() {
         if (us.createNewUser(newUser, confirm) == true) {
             return "login.xhtml?faces-redirect=true";
-        }else{
+        } else {
             return null;
         }
     }
-    
-    public String loginUser(){
+
+    public String loginUser() {
         if (us.validateLogin(newUser.getUsername(), newUser.getPassword()) == true) {
             return "index.xhtml?faces-redirect=true";
-        }else{
+        } else {
             FacesContext.getCurrentInstance().addMessage("loginID:logbttn", new FacesMessage("Wrong username or password"));
             return null;
         }
