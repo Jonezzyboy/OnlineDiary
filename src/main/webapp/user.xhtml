@@ -51,7 +51,9 @@
             </div>
             <div>
                 <h:outputLabel value="Postcode:"/>
-                <h:inputText id="postcode" value="#{userCtrl.newUser.postcode}" required = "true"/>
+                <h:inputText id="postcode" value="#{userCtrl.newUser.postcode}" required = "true" validatorMessage="Invalid postcode">
+                    <f:validateRegex for="postcode" pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"/>
+                </h:inputText>
                 <h:message for="postcode" class="errorMsg"></h:message>
             </div>
             <div>
