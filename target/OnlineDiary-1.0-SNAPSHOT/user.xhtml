@@ -56,7 +56,9 @@
             </div>
             <div>
                 <h:outputLabel value="Phone Number:"/>
-                <h:inputText id="phone" value="#{userCtrl.newUser.phone}" required = "true"/>
+                <h:inputText id="phone" value="#{userCtrl.newUser.phone}" validatorMessage="Invalid phone number">
+                    <f:validateRegex for="phone" pattern="((\+44)\s*(\([0-9]{2}\))\s*([0-9]{8}))?|((\([0-9]{3}\))\s*([0-9]{8}))?"/>
+                </h:inputText>
                 <h:message for="phone" class="errorMsg"></h:message>
             </div>
             <div>
