@@ -30,7 +30,6 @@ public class User implements Serializable {
     private String lastName;
     private String username;
     private String password;
-    private String confirm;
     private String email;
     private String phone;
     private String address;
@@ -44,14 +43,6 @@ public class User implements Serializable {
 
     public void setAppointments(Set<User_Appointment> appointments) {
         this.appointments = appointments;
-    }
-
-    public String getConfirm() {
-        return confirm;
-    }
-
-    public void setConfirm(String confirm) {
-        this.confirm = confirm;
     }
     
     public String getAddress() {

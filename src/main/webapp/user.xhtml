@@ -34,12 +34,14 @@
             </div>
             <div>
                 <h:outputLabel value="Confirm Password:"/>
-                <h:inputSecret id="confirm" value="#{userCtrl.newUser.confirm}" required = "true" redisplay = "true"/>
+                <h:inputSecret id="confirm" value="#{userCtrl.confirm}" required = "true" redisplay = "true"/>
                 <h:message for="confirm" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Email:"/>
-                <h:inputText id="email" value="#{userCtrl.newUser.email}" required = "true"/>
+                <h:inputText id="email" value="#{userCtrl.newUser.email}" required = "true" validatorMessage="Invalid email address">
+                    <f:validateRegex for="email" pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
+                </h:inputText>
                 <h:message for="email" class="errorMsg"></h:message>
             </div>
             <div>

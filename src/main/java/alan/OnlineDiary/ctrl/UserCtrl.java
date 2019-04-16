@@ -28,6 +28,23 @@ public class UserCtrl {
     private User newUser = new User();
     private String username;
     private String password;
+    private String confirm;
+
+    public String getConfirm() {
+        return confirm;
+    }
+
+    public void setConfirm(String confirm) {
+        this.confirm = confirm;
+    }
+
+    public UserService getUs() {
+        return us;
+    }
+
+    public void setUs(UserService us) {
+        this.us = us;
+    }
 
     public String getPassword() {
         return password;
@@ -57,12 +74,18 @@ public class UserCtrl {
     private UserService us;
     
     public String insertUser(){
-        String newPage = us.createNewUser(newUser);
-        return newPage;
+        if (us.createNewUser(newUser, confirm) == true) {
+             return "login.xhtml?faces-redirect=true";
+        }else{
+            return "user.xhtml?faces-redirect=true";
+        }
     }
     
     public String loginUser(){
-        String newPage = us.validateLogin(username, password);
-        return newPage;
+        if (us.validateLogin(username, password) == true) {
+            return "index.xhtml?faces-redirect=true";
+        }else{
+            return "login.xhtml?faces-redirect=true";
+        }
     }
 }

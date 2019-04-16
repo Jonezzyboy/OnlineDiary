@@ -22,14 +22,15 @@ public class UserService {
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-    public String createNewUser(User u) {
+    public Boolean createNewUser(User u, String confirm) {
         // Fix duplicate entry validation
+        Boolean passwordsMatch = checkPasswords(u, confirm);
         Boolean userExists = checkDuplicates(u);
-        if (userExists == false) {
+        if (userExists == false && passwordsMatch == true) {
             uf.create(u);
-            return "login.xhtml?faces-redirect=true";
+            return true;
         } else {
-            return "user.xhtml?faces-redirect=true";
+            return false;
         }
     }
 
@@ -40,11 +41,19 @@ public class UserService {
         }
         return userExists;
     }
+    
+    public Boolean checkPasswords(User u, String confirm){
+        Boolean passwordsMatch = false;
+        if (u.getPassword().equals(confirm)) {
+            passwordsMatch = true;
+        }
+        return passwordsMatch;
+    }
 
-    public String validateLogin(String username, String password) {
-        String userExists = "index.xhtml?faces-redirect=true";
+    public Boolean validateLogin(String username, String password) {
+        Boolean userExists = true;
         if (uf.findUserByCredentials(username, password) == null) {
-            userExists = "login.xhtml?faces-redirect=true";
+            userExists = false;
         }
         return userExists;
     }
