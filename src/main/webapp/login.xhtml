@@ -11,16 +11,15 @@
             <h1>Login</h1>
             <div>
                 <h:outputLabel value="Username: "/>
-                <h:inputText id="username" value="#{userCtrl.username}"/>
-                <h:message for="username"></h:message>
+                <h:inputText id="username" value="#{userCtrl.newUser.username}"/>
             </div>
             <div>
                 <h:outputLabel value="Password:"/>
-                <h:inputSecret id="password" value="#{userCtrl.password}"/>
-                <h:message for="password"></h:message>
+                <h:inputSecret id="password" value="#{userCtrl.newUser.password}"/>
             </div>
             <div>
-                <h:commandButton action="#{userCtrl.loginUser()}" value="Login"/>
+                <h:message for="logbttn" class="errorMsg"></h:message>
+                <h:commandButton id="logbttn" action="#{userCtrl.loginUser()}" value="Login"/>
             </div>
             <div>
                 <h:link value="Create an account" outcome="user.xhtml?faces-redirect=true" />

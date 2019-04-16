@@ -26,8 +26,6 @@ public class UserCtrl {
     }
     
     private User newUser = new User();
-    private String username;
-    private String password;
     private String confirm;
 
     public String getConfirm() {
@@ -38,30 +36,6 @@ public class UserCtrl {
         this.confirm = confirm;
     }
 
-    public UserService getUs() {
-        return us;
-    }
-
-    public void setUs(UserService us) {
-        this.us = us;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    
     public User getNewUser(){
         return newUser;
     }
@@ -75,17 +49,17 @@ public class UserCtrl {
     
     public String insertUser(){
         if (us.createNewUser(newUser, confirm) == true) {
-             return "login.xhtml?faces-redirect=true";
+            return "login.xhtml?faces-redirect=true";
         }else{
-            return "user.xhtml?faces-redirect=true";
+            return null;
         }
     }
     
     public String loginUser(){
-        if (us.validateLogin(username, password) == true) {
+        if (us.validateLogin(newUser.getUsername(), newUser.getPassword()) == true) {
             return "index.xhtml?faces-redirect=true";
         }else{
-            return "login.xhtml?faces-redirect=true";
+            return null;
         }
     }
 }

@@ -9,6 +9,8 @@ import alan.OnlineDiary.ents.User;
 import alan.OnlineDiary.pers.UserFacade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -38,6 +40,10 @@ public class UserService {
         Boolean userExists = true;
         if (uf.findUsersByUsername(u.getUsername()) == null && uf.findUsersByEmail(u.getEmail()) == null) {
             userExists = false;
+        }else if(uf.findUsersByUsername(u.getUsername()) != null){
+            FacesContext.getCurrentInstance().addMessage("createID:username", new FacesMessage("Username already exists"));
+        }else if(uf.findUsersByEmail(u.getEmail()) != null){
+            FacesContext.getCurrentInstance().addMessage("createID:email", new FacesMessage("Email already exists"));
         }
         return userExists;
     }
@@ -46,6 +52,8 @@ public class UserService {
         Boolean passwordsMatch = false;
         if (u.getPassword().equals(confirm)) {
             passwordsMatch = true;
+        }else{
+            FacesContext.getCurrentInstance().addMessage("createID:confirm", new FacesMessage("Passwords do not match"));
         }
         return passwordsMatch;
     }
@@ -54,6 +62,7 @@ public class UserService {
         Boolean userExists = true;
         if (uf.findUserByCredentials(username, password) == null) {
             userExists = false;
+            FacesContext.getCurrentInstance().addMessage("loginID:logbttn", new FacesMessage("Wrong username or password"));
         }
         return userExists;
     }
