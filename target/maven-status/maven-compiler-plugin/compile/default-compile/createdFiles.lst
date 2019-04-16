@@ -2,6 +2,8 @@ alan\OnlineDiary\bus\UserService.class
 alan\OnlineDiary\ctrl\UserCtrl.class
 alan\OnlineDiary\ents\Appointment_.class
 alan\OnlineDiary\ents\User_.class
+alan\OnlineDiary\ents\User_Appointment.class
+alan\OnlineDiary\ents\User_Appointment_.class
 alan\OnlineDiary\ents\Appointment.class
 alan\OnlineDiary\ents\User.class
 alan\OnlineDiary\pers\UserFacade.class

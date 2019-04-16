@@ -6,13 +6,13 @@
 package alan.OnlineDiary.ents;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -33,15 +33,15 @@ public class Appointment implements Serializable {
     private java.util.Date startTime;
     @Temporal(TemporalType.TIME)
     private java.util.Date endTime;
-    @ManyToMany(mappedBy="appointments")
-    private ArrayList<User> users;
+    @OneToMany(mappedBy = "appointment")
+    private Set<User_Appointment> appointments;
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public Set<User_Appointment> getAppointments() {
+        return appointments;
     }
 
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
+    public void setAppointments(Set<User_Appointment> appointments) {
+        this.appointments = appointments;
     }
 
     public Date getCreationDate() {
