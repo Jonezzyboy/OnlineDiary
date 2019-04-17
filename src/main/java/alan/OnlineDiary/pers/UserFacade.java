@@ -58,7 +58,7 @@ public class UserFacade extends AbstractFacade<User> {
             TypedQuery<User> query = em.createQuery(
                     "SELECT u FROM User u WHERE (u.username = :username AND u.password = :password)"
                             + "OR(u.email = :username AND u.password = :password)", User.class);
-            return query.setParameter("username", username).setParameter("password", password).getSingleResult();
+            return (User)query.setParameter("username", username).setParameter("password", password).getSingleResult();
         } catch(NoResultException e){
             return null;
         }

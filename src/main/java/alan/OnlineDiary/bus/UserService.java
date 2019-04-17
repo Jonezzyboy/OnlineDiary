@@ -40,30 +40,30 @@ public class UserService {
         if (uf.findUsersByUsername(u.getUsername()) == null && uf.findUsersByEmail(u.getEmail()) == null) {
             userExists = false;
         }
-        if(uf.findUsersByUsername(u.getUsername()) != null){
+        if (uf.findUsersByUsername(u.getUsername()) != null) {
             FacesContext.getCurrentInstance().addMessage("createID:username", new FacesMessage("Username already exists"));
         }
-        if(uf.findUsersByEmail(u.getEmail()) != null){
+        if (uf.findUsersByEmail(u.getEmail()) != null) {
             FacesContext.getCurrentInstance().addMessage("createID:email", new FacesMessage("Email already exists"));
         }
         return userExists;
     }
-    
-    public Boolean checkPasswords(User u, String confirm){
+
+    public Boolean checkPasswords(User u, String confirm) {
         Boolean passwordsMatch = false;
         if (u.getPassword().equals(confirm)) {
             passwordsMatch = true;
-        }else{
+        } else {
             FacesContext.getCurrentInstance().addMessage("createID:confirm", new FacesMessage("Passwords do not match"));
         }
         return passwordsMatch;
     }
 
-    public Boolean validateLogin(String username, String password) {
-        Boolean userExists = true;
-        if (uf.findUserByCredentials(username, password) == null) {
-            userExists = false;
+    public User validateLogin(String username, String password) {
+        User user = uf.findUserByCredentials(username, password);
+        if (user == null) {
+            return user;
         }
-        return userExists;
+        return user;
     }
 }

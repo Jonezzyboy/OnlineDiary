@@ -58,11 +58,20 @@ public class UserCtrl {
     }
 
     public String loginUser() {
-        if (us.validateLogin(newUser.getUsername(), newUser.getPassword()) == true) {
+        User user = us.validateLogin(newUser.getUsername(), newUser.getPassword());
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (user != null) {
+            context.getExternalContext().getSessionMap().put("user", user);
             return "index.xhtml?faces-redirect=true";
         } else {
-            FacesContext.getCurrentInstance().addMessage("loginID:logbttn", new FacesMessage("Wrong username or password"));
+            context.addMessage("loginID:logbttn", new FacesMessage("Wrong username or password"));
             return null;
         }
     }
+    
+    public String logout() {
+        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+        return "login.xhtml?faces-redirect=true";
+    }
+
 }
