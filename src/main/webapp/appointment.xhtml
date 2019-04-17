@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Appointment</title>
+        <link rel="stylesheet" href="CSS/formStyle.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h1>Create Appointment</h1>
+            <div>
+                <h:outputLabel value="Start Date:"/>
+                <h:inputText id="startDate" value="#{appointmentCtrl.newAppointment.startDate}" required = "true">
+                    <f:convertDateTime pattern="DD-MM-YY" />
+                </h:inputText>
+                <h:message for="startDate" class="errorMsg"></h:message>
+            </div>
+            <div>
+                <h:outputLabel value="Start Time:"/>
+                <h:inputText id="startTime" value="#{appointmentCtrl.newAppointment.startTime}" required = "true">
+                    <f:convertDateTime type="time" pattern="HH:mm" />
+                </h:inputText>
+                <h:message for="startTime" class="errorMsg"></h:message>
+            </div>
+            <div>
+                <h:outputLabel value="End Time:"/>
+                <h:inputText id="endTime" value="#{appointmentCtrl.newAppointment.endTime}" required = "true">
+                    <f:convertDateTime type="time" pattern="HH:mm" />
+                </h:inputText>
+                <h:message for="endTime" class="errorMsg"></h:message>
+            </div>
+            <div>
+                <h:outputLabel value="Description:"/>
+                <h:inputTextarea id="description" value="#{appointmentCtrl.newAppointment.description}" required = "true"/>
+                <h:message for="description" class="errorMsg"></h:message>
+            </div>
+            <div>
+                <h:commandButton action="#{appointmentCtrl.insertAppointment()}" value="Submit"/>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+

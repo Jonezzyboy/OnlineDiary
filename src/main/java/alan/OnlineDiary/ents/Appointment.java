@@ -28,13 +28,31 @@ public class Appointment implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long appointment_id;
     @Temporal(TemporalType.DATE)
-    private java.util.Date creationDate;
+    private java.util.Date startDate;
     @Temporal(TemporalType.TIME)
     private java.util.Date startTime;
     @Temporal(TemporalType.TIME)
     private java.util.Date endTime;
     @OneToMany(mappedBy = "appointment")
     private Set<User_Appointment> appointments;
+    private String description;
+    private String owner;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
     public Set<User_Appointment> getAppointments() {
         return appointments;
@@ -44,12 +62,12 @@ public class Appointment implements Serializable {
         this.appointments = appointments;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
     public Date getStartTime() {
