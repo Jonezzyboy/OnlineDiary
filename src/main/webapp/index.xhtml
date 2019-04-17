@@ -7,11 +7,14 @@
     </h:head>
     <h:body>
         <nav>
-            <ul>
-                <li><h:link value="home" outcome="index.xhtml" /></li>
-                <li><h:link value="contacts" /></li>
-                <li><h:link value="reports" /></li>
-            </ul>
+            <h:form>
+                <ul>
+                    <li><h:link value="home" outcome="index.xhtml" /></li>
+                    <li><h:link value="contacts" /></li>
+                    <li><h:link value="reports" /></li>
+                    <li><h:commandLink  value="logout" action="#{userCtrl.logout}" /></li>
+                </ul>
+            </h:form>
         </nav>
     </h:body>
 </html>
