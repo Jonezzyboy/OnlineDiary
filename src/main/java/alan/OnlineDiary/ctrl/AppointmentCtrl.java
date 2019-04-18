@@ -42,6 +42,7 @@ public class AppointmentCtrl {
     private AppointmentService as;
     
     public String insertAppointment() {
+        // Set the owner of appointment to current logged in user 
         FacesContext context = FacesContext.getCurrentInstance();
         User user = (User) context.getExternalContext().getSessionMap().get("user");
         String username = user.getUsername();

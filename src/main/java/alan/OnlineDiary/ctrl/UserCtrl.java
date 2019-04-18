@@ -61,6 +61,7 @@ public class UserCtrl {
         User user = us.validateLogin(newUser.getUsername(), newUser.getPassword());
         FacesContext context = FacesContext.getCurrentInstance();
         if (user != null) {
+            // Set session variable to current user obj
             context.getExternalContext().getSessionMap().put("user", user);
             return "index.xhtml?faces-redirect=true";
         } else {
