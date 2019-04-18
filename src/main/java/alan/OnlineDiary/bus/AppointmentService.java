@@ -6,6 +6,7 @@
 package alan.OnlineDiary.bus;
 
 import alan.OnlineDiary.ents.Appointment;
+import alan.OnlineDiary.ents.User;
 import alan.OnlineDiary.pers.AppointmentFacade;
 import alan.OnlineDiary.pers.UserFacade;
 import alan.OnlineDiary.pers.User_AppointmentFacade;
@@ -30,6 +31,7 @@ public class AppointmentService {
     // "Insert Code > Add Business Method")
     
     public Boolean createNewAppointment(Appointment a) {
+        User ownerID = uf.findUserIDByUsername(a.getOwner());
         if (true) {
             af.create(a);
             return true;

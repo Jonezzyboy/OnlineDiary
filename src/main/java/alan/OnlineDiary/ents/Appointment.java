@@ -36,7 +36,16 @@ public class Appointment implements Serializable {
     @OneToMany(mappedBy = "appointment")
     private Set<User_Appointment> appointments;
     private String description;
+    private User users;
     private String owner;
+
+    public User getUsers() {
+        return users;
+    }
+
+    public void setUsers(User users) {
+        this.users = users;
+    }
 
     public String getDescription() {
         return description;
@@ -118,5 +127,5 @@ public class Appointment implements Serializable {
     public String toString() {
         return "alan.OnlineDiary.ents.Appointment[ id=" + appointment_id + " ]";
     }
-    
+
 }

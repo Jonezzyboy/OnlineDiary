@@ -39,7 +39,6 @@ public class UserFacade extends AbstractFacade<User> {
         } catch(NoResultException e){
             return null;
         }
-
     }
         
     public User findUserByCredentials(String username, String password) {
@@ -51,7 +50,6 @@ public class UserFacade extends AbstractFacade<User> {
         } catch(NoResultException e){
             return null;
         }
-
     }
     
     public User findUsersByEmail(String email) {
@@ -62,7 +60,16 @@ public class UserFacade extends AbstractFacade<User> {
         } catch(NoResultException e){
             return null;
         }
-
+    }
+    
+    public User findUserIDByUsername(String username) {
+        try {
+            TypedQuery<User> query = em.createQuery(
+                    "SELECT u.user_id FROM User u WHERE u.username = :username", User.class);
+            return query.getSingleResult();
+        } catch(NoResultException e){
+            return null;
+        }
     }
 
 }
