@@ -8,6 +8,7 @@ alan\OnlineDiary\ents\User.class
 alan\OnlineDiary\ctrl\AppointmentCtrl.class
 alan\OnlineDiary\ctrl\LoginFilter.class
 alan\OnlineDiary\pers\AppointmentFacade.class
+alan\OnlineDiary\pers\User_AppointmentFacade.class
 alan\OnlineDiary\ents\User_.class
 alan\OnlineDiary\ents\User_Appointment.class
 alan\OnlineDiary\pers\UserFacade.class

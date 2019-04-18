@@ -7,6 +7,8 @@ package alan.OnlineDiary.bus;
 
 import alan.OnlineDiary.ents.Appointment;
 import alan.OnlineDiary.pers.AppointmentFacade;
+import alan.OnlineDiary.pers.UserFacade;
+import alan.OnlineDiary.pers.User_AppointmentFacade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
@@ -19,6 +21,10 @@ public class AppointmentService {
     
     @EJB
     private AppointmentFacade af;
+    @EJB
+    private UserFacade uf;
+    @EJB
+    private User_AppointmentFacade uaf;
 
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
