@@ -7,10 +7,12 @@ package alan.OnlineDiary.ctrl;
 
 import alan.OnlineDiary.bus.AppointmentService;
 import alan.OnlineDiary.ents.Appointment;
+import alan.OnlineDiary.ents.User;
 import static alan.OnlineDiary.ents.User_Appointment_.appointment;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -40,8 +42,12 @@ public class AppointmentCtrl {
     private AppointmentService as;
     
     public String insertAppointment() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        User user = (User) context.getExternalContext().getSessionMap().get("user");
+        String username = user.getUsername();
+        newAppointment.setOwner(username);
         if (as.createNewAppointment(newAppointment) == true) {
-            return null;
+            return "index.xhtml?faces-redirect=true";
         } else {
             return null;
         }

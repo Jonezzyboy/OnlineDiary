@@ -42,7 +42,7 @@ public class UserCtrl {
         return newUser;
     }
 
-    public void setNewUser() {
+    public void setNewUser(User newUser) {
         this.newUser = newUser;
     }
 

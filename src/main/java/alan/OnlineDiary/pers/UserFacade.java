@@ -41,18 +41,7 @@ public class UserFacade extends AbstractFacade<User> {
         }
 
     }
-    
-    public User findUsersByPassword(String password) {
-        try {
-            TypedQuery<User> query = em.createQuery(
-                    "SELECT u FROM User u WHERE u.password = :password", User.class);
-            return query.setParameter("password", password).getSingleResult();
-        } catch(NoResultException e){
-            return null;
-        }
-
-    }
-    
+        
     public User findUserByCredentials(String username, String password) {
         try {
             TypedQuery<User> query = em.createQuery(

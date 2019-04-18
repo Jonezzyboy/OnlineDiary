@@ -13,7 +13,7 @@
             <div>
                 <h:outputLabel value="Start Date:"/>
                 <h:inputText id="startDate" value="#{appointmentCtrl.newAppointment.startDate}" required = "true">
-                    <f:convertDateTime pattern="DD-MM-YY" />
+                    <f:convertDateTime pattern="dd/mm/yyyy" />
                 </h:inputText>
                 <h:message for="startDate" class="errorMsg"></h:message>
             </div>
