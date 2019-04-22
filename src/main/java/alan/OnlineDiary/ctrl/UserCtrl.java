@@ -7,6 +7,7 @@ package alan.OnlineDiary.ctrl;
 
 import alan.OnlineDiary.bus.UserService;
 import alan.OnlineDiary.ents.User;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
@@ -28,6 +29,7 @@ public class UserCtrl {
     }
 
     private User newUser = new User();
+    private List<User> allUsers;
     private String confirm;
 
     public String getConfirm() {
@@ -49,6 +51,11 @@ public class UserCtrl {
     @EJB
     private UserService us;
 
+    public List<User> getAllUsers() {
+        allUsers = us.findAllUsers();
+        return allUsers;
+    }
+
     public String insertUser() {
         if (us.createNewUser(newUser, confirm) == true) {
             return "login.xhtml?faces-redirect=true";
@@ -69,7 +76,7 @@ public class UserCtrl {
             return null;
         }
     }
-    
+
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "login.xhtml?faces-redirect=true";

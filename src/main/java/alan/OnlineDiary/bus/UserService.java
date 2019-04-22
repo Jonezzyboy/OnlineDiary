@@ -7,6 +7,7 @@ package alan.OnlineDiary.bus;
 
 import alan.OnlineDiary.ents.User;
 import alan.OnlineDiary.pers.UserFacade;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.faces.application.FacesMessage;
@@ -65,5 +66,9 @@ public class UserService {
             return user;
         }
         return user;
+    }
+
+    public List<User> findAllUsers() {
+        return uf.findAll();
     }
 }

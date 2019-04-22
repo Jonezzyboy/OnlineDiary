@@ -35,14 +35,14 @@ public class User implements Serializable {
     private String address;
     private String postcode;
     @OneToMany(mappedBy = "user")
-    private Set<User_Appointment> appointments;
+    private Set<User_Appointment> user_appointments;
 
-    public Set<User_Appointment> getAppointments() {
-        return appointments;
+    public Set<User_Appointment> getUser_appointments() {
+        return user_appointments;
     }
 
-    public void setAppointments(Set<User_Appointment> appointments) {
-        this.appointments = appointments;
+    public void setUser_appointments(Set<User_Appointment> user_appointments) {
+        this.user_appointments = user_appointments;
     }
     
     public String getAddress() {

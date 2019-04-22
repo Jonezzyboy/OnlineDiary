@@ -12,6 +12,8 @@ import alan.OnlineDiary.pers.UserFacade;
 import alan.OnlineDiary.pers.User_AppointmentFacade;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -32,10 +34,25 @@ public class AppointmentService {
     
     public Boolean createNewAppointment(Appointment a) {
         User ownerID = uf.findUserIDByUsername(a.getOwner());
-        if (true) {
+        Boolean appointmentClash = checkClash(a, ownerID);
+        if (appointmentClash == false) {
             af.create(a);
             return true;
         }
         return false;
+    }
+    
+    public Boolean checkClash(Appointment a, User u) {
+        Boolean appointmentClash = true;
+        if (uf.findUsersByUsername(u.getUsername()) == null && uf.findUsersByEmail(u.getEmail()) == null) {
+            appointmentClash = false;
+        }
+        if (uf.findUsersByUsername(u.getUsername()) != null) {
+            FacesContext.getCurrentInstance().addMessage("createID:username", new FacesMessage("Username already exists"));
+        }
+        if (uf.findUsersByEmail(u.getEmail()) != null) {
+            FacesContext.getCurrentInstance().addMessage("createID:email", new FacesMessage("Email already exists"));
+        }
+        return appointmentClash;
     }
 }

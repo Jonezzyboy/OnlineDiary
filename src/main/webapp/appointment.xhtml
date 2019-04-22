@@ -12,24 +12,31 @@
             <h1>Create Appointment</h1>
             <div>
                 <h:outputLabel value="Start Date:"/>
-                <h:inputText id="startDate" value="#{appointmentCtrl.newAppointment.startDate}" required = "true">
+                <h:inputText id="startDate" value="#{appointmentCtrl.newAppointment.startDate}" required = "true" validatorMessage="Date must be written as DD/MM/YYYY">
                     <f:convertDateTime pattern="dd/mm/yyyy" />
                 </h:inputText>
                 <h:message for="startDate" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Start Time:"/>
-                <h:inputText id="startTime" value="#{appointmentCtrl.newAppointment.startTime}" required = "true">
+                <h:inputText id="startTime" value="#{appointmentCtrl.newAppointment.startTime}" required = "true" validatorMessage="Time must be written as HH:MM">
                     <f:convertDateTime type="time" pattern="HH:mm" />
                 </h:inputText>
                 <h:message for="startTime" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="End Time:"/>
-                <h:inputText id="endTime" value="#{appointmentCtrl.newAppointment.endTime}" required = "true">
+                <h:inputText id="endTime" value="#{appointmentCtrl.newAppointment.endTime}" required = "true" validatorMessage="Time must be written as HH:MM">
                     <f:convertDateTime type="time" pattern="HH:mm" />
                 </h:inputText>
                 <h:message for="endTime" class="errorMsg"></h:message>
+            </div>
+            <div>
+                <h:outputLabel value="Users:"/>
+                <h:selectManyListbox id="userList" value="#{appointmentCtrl.newAppointment.users}">
+                    <f:selectItems value="#{userCtrl.allUsers}" var="user" itemLabel="#{user.firstName}" itemValue="#{user.username}" />
+                </h:selectManyListbox>
+                <h:message for="userList" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Description:"/>

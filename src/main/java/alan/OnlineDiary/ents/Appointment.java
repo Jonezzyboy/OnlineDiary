@@ -7,6 +7,7 @@ package alan.OnlineDiary.ents;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,16 +35,16 @@ public class Appointment implements Serializable {
     @Temporal(TemporalType.TIME)
     private java.util.Date endTime;
     @OneToMany(mappedBy = "appointment")
-    private Set<User_Appointment> appointments;
+    private Set<User_Appointment> user_appointments;
+    private List<User> users;
     private String description;
-    private User users;
     private String owner;
-
-    public User getUsers() {
+    
+    public List<User> getUsers() {
         return users;
     }
 
-    public void setUsers(User users) {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
 
@@ -63,12 +64,12 @@ public class Appointment implements Serializable {
         this.owner = owner;
     }
 
-    public Set<User_Appointment> getAppointments() {
-        return appointments;
+    public Set<User_Appointment> getUser_appointments() {
+        return user_appointments;
     }
 
-    public void setAppointments(Set<User_Appointment> appointments) {
-        this.appointments = appointments;
+    public void setUser_appointments(Set<User_Appointment> user_appointments) {
+        this.user_appointments = user_appointments;
     }
 
     public Date getStartDate() {
