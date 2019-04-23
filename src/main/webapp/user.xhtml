@@ -12,46 +12,48 @@
             <h1>Create Account</h1>
             <div>
                 <h:outputLabel value="First Name:"/>
-                <h:inputText id="firstName" value="#{userCtrl.newUser.firstName}" required = "true"/>
+                <h:inputText id="firstName" value="#{userCtrl.newUser.firstName}" required="true" />
                 <h:message for="firstName" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Last Name:"/>
-                <h:inputText id="lastName" value="#{userCtrl.newUser.lastName}" required = "true"/>
+                <h:inputText id="lastName" value="#{userCtrl.newUser.lastName}" required="true" />
                 <h:message for="lastName" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Username: "/>
-                <h:inputText id="username" value="#{userCtrl.newUser.username}" required = "true" validatorMessage="Usernames must be at least 6 characters long">
+                <h:inputText id="username" value="#{userCtrl.newUser.username}" required="true" validatorMessage="Usernames must be at least 6 characters long">
                     <f:validateLength minimum="6" />
                 </h:inputText>
                 <h:message for="username" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Password:"/>
-                <h:inputSecret id="password" value="#{userCtrl.newUser.password}" required = "true" redisplay = "true"/>
+                <h:inputSecret id="password" value="#{userCtrl.newUser.password}" required="true" redisplay = "true" />
                 <h:message for="password" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Confirm Password:"/>
-                <h:inputSecret id="confirm" value="#{userCtrl.confirm}" required = "true" redisplay = "true"/>
+                <h:inputSecret id="confirm" value="#{userCtrl.confirm}" required="true" redisplay = "true" />
                 <h:message for="confirm" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Email:"/>
-                <h:inputText id="email" value="#{userCtrl.newUser.email}" required = "true" validatorMessage="Invalid email address">
+                <h:inputText id="email" value="#{userCtrl.newUser.email}" required="true" validatorMessage="Invalid email address">
                     <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                 </h:inputText>
                 <h:message for="email" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Address:"/>
-                <h:inputText id="address" value="#{userCtrl.newUser.address}" required = "true"/>
+                <h:inputText id="address" value="#{userCtrl.newUser.address}">
+                    <f:validateRequired />
+                </h:inputText>
                 <h:message for="address" class="errorMsg"></h:message>
             </div>
             <div>
                 <h:outputLabel value="Postcode:"/>
-                <h:inputText id="postcode" value="#{userCtrl.newUser.postcode}" required = "true" validatorMessage="Invalid postcode">
+                <h:inputText id="postcode" value="#{userCtrl.newUser.postcode}" required="true" validatorMessage="Invalid postcode">
                     <f:validateRegex pattern="([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9][A-Za-z]?))))\s?[0-9][A-Za-z]{2})"/>
                 </h:inputText>
                 <h:message for="postcode" class="errorMsg"></h:message>

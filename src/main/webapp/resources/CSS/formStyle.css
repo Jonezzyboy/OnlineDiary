@@ -44,7 +44,7 @@ a{
 input[type=text],
 input[type=password],
 textarea,
-select{
+select {
     width: 100%;
     padding: 8px 4px 8px 10px;
     margin-bottom: 15px;
@@ -53,8 +53,13 @@ select{
     border-radius: 2px;
 }
 
+select {
+    height: 65px;
+}
+
 textarea{
     resize: vertical;
+    min-height: 50px;
 }
 
 input[type=submit] {

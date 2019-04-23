@@ -33,6 +33,12 @@ public class AppointmentService {
     // "Insert Code > Add Business Method")
     
     public Boolean createNewAppointment(Appointment a) {
+        // Set the owner of appointment to current logged in user 
+        FacesContext context = FacesContext.getCurrentInstance();
+        User user = (User) context.getExternalContext().getSessionMap().get("user");
+        String username = user.getUsername();
+        a.setOwner(username);
+        // User object for linking table
         User ownerID = uf.findUserIDByUsername(a.getOwner());
         Boolean appointmentClash = checkClash(a, ownerID);
         if (appointmentClash == false) {
