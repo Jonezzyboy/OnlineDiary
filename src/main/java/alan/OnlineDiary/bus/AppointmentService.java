@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 /**
@@ -30,24 +31,39 @@ public class AppointmentService {
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
     public Boolean createNewAppointment(Appointment a, String[] userArray) {
-        // Set the owner of appointment to current logged in user 
-        FacesContext context = FacesContext.getCurrentInstance();
-        User owner = (User) context.getExternalContext().getSessionMap().get("user");
-        String username = owner.getUsername();
-        a.setOwner(username);
-        // Set all users associated with the appointment in joining table
-        List<User> userList = new ArrayList<User>();
-        userList.add(owner);
-        for (String user : userArray) {
-            userList.add(uf.findUsersByUsername(user));
+        Boolean timeValid = checkTimes(a);
+        if (timeValid) {
+            // Set the owner of appointment to current logged in user 
+            FacesContext context = FacesContext.getCurrentInstance();
+            User owner = (User) context.getExternalContext().getSessionMap().get("user");
+            String username = owner.getUsername();
+            a.setOwner(username);
+            // Set all users associated with the appointment in joining table
+            List<User> userList = new ArrayList<>();
+            userList.add(owner);
+            for (String user : userArray) {
+                userList.add(uf.findUsersByUsername(user));
+            }
+            a.setUsers(userList);
+            af.create(a);
+            return true;
+        } else {
+            FacesContext.getCurrentInstance().addMessage("appointForm:startTime", new FacesMessage("Start Time must be before End Time"));
+            return false;
         }
-        a.setUsers(userList);
-        af.create(a);
-        return true;
+        
     }
 
     public Boolean checkClash(Appointment a, User u) {
         Boolean appointmentClash = false;
         return appointmentClash;
+    }
+
+    public Boolean checkTimes(Appointment a) {
+        Boolean timeValid = true;
+        if (a.getStartTime().after(a.getEndTime()) || a.getStartTime().compareTo(a.getEndTime()) == 0) {
+            timeValid = false;
+        }
+        return timeValid;
     }
 }
