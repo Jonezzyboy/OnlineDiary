@@ -36,17 +36,8 @@ public class Appointment implements Serializable {
     private java.util.Date endTime;
     @OneToMany(mappedBy = "appointment")
     private Set<User_Appointment> user_appointments;
-    private List<User> users;
     private String description;
     private String owner;
-    
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 
     public String getDescription() {
         return description;
