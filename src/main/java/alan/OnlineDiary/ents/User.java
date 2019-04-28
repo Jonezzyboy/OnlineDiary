@@ -6,12 +6,14 @@
 package alan.OnlineDiary.ents;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -34,16 +36,17 @@ public class User implements Serializable {
     private String phone;
     private String address;
     private String postcode;
-    @OneToMany(mappedBy = "user")
-    private Set<User_Appointment> user_appointments;
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Appointment> appointments;
 
-    public Set<User_Appointment> getUser_appointments() {
-        return user_appointments;
+    public List<Appointment> getAppointments() {
+        return appointments;
     }
 
-    public void setUser_appointments(Set<User_Appointment> user_appointments) {
-        this.user_appointments = user_appointments;
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
+
     
     public String getAddress() {
         return address;
