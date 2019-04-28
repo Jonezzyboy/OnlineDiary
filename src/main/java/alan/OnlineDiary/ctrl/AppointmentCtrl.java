@@ -28,14 +28,14 @@ public class AppointmentCtrl {
     }
     
     private Appointment newAppointment = new Appointment();
-    private List<User> users;
+    private String[] userArray;
 
-    public List<User> getUsers() {
-        return users;
+    public String[] getUserArray() {
+        return userArray;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUserArray(String[] userArray) {
+        this.userArray = userArray;
     }
 
     public Appointment getNewAppointment() {
@@ -50,7 +50,7 @@ public class AppointmentCtrl {
     private AppointmentService as;
     
     public String insertAppointment() {
-        if (as.createNewAppointment(newAppointment, users) == true) {
+        if (as.createNewAppointment(newAppointment, userArray) == true) {
             return "index.xhtml?faces-redirect=true";
         } else {
             return null;

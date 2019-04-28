@@ -33,7 +33,7 @@
             </div>
             <div>
                 <h:outputLabel value="Users:"/>
-                <h:selectManyListbox id="userList" value="#{appointmentCtrl.users}">
+                <h:selectManyListbox id="userList" value="#{appointmentCtrl.userArray}">
                     <f:selectItems value="#{userCtrl.allUsers}" var="user" itemLabel="#{user.firstName} #{user.lastName}" itemValue="#{user.username}" />
                 </h:selectManyListbox>
                 <h:message for="userList" class="errorMsg"></h:message>
