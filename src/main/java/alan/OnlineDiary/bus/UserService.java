@@ -23,8 +23,6 @@ public class UserService {
     @EJB
     private UserFacade uf;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     public Boolean createNewUser(User u, String confirm) {
         Boolean passwordsMatch = checkPasswords(u, confirm);
         Boolean userExists = checkDuplicates(u);

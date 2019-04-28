@@ -5,10 +5,20 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Contacts</title>
+        <h:outputStylesheet name="CSS/navStyle.css" />
         <h:outputStylesheet name="CSS/tableStyle.css" />
     </h:head>
     <h:body>
-        <div>
+        <h:form id="navigation">
+            <ul>
+                <li><h:link value="Home" outcome="index.xhtml" /></li>
+                <li><h:link value="Appointment" outcome="appointment.xhtml" /></li>
+                <li><h:link value="Contacts" outcome="contacts.xhtml" /></li>
+                <li><h:link value="Reports" /></li>
+                <li><h:commandLink value="Logout" action="#{userCtrl.logout}" /></li>
+            </ul>
+        </h:form>
+        <div class="wrapper">
             <h1>Contact List</h1>
             <h:dataTable value = "#{userCtrl.allUsers}" var = "user" 
                          styleClass = "userTable" 

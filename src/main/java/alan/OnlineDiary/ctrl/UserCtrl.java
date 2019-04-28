@@ -30,6 +30,7 @@ public class UserCtrl {
 
     private User newUser = new User();
     private List<User> allUsers;
+    private List<User> nonOwners;
     private String confirm;
 
     public String getConfirm() {
@@ -54,6 +55,19 @@ public class UserCtrl {
     public List<User> getAllUsers() {
         allUsers = us.findAllUsers();
         return allUsers;
+    }
+
+    public List<User> getNonOwners() {
+        nonOwners = getAllUsers();
+        FacesContext context = FacesContext.getCurrentInstance();
+        User owner = (User) context.getExternalContext().getSessionMap().get("user");
+        for (User user : nonOwners) {
+            if (user.getUsername().equals(owner.getUsername())) {
+                nonOwners.remove(user);
+                break;
+            }
+        }
+        return nonOwners;
     }
 
     public String insertUser() {

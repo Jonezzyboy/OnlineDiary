@@ -28,8 +28,6 @@ public class AppointmentService {
     @EJB
     private UserFacade uf;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
     public Boolean createNewAppointment(Appointment a, String[] userArray) {
         Boolean timeValid = checkTimes(a);
         if (timeValid) {

@@ -4,19 +4,18 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Online Diary</title>
+        <h:outputStylesheet name="CSS/navStyle.css" />
     </h:head>
     <h:body>
-        <nav>
-            <h:form>
-                <ul>
-                    <li><h:link value="home" outcome="index.xhtml" /></li>
-                    <li><h:link value="appointment" outcome="appointment.xhtml" /></li>
-                    <li><h:link value="contacts" outcome="contacts.xhtml" /></li>
-                    <li><h:link value="reports" /></li>
-                    <li><h:commandLink  value="logout" action="#{userCtrl.logout}" /></li>
-                </ul>
-            </h:form>
-        </nav>
+        <h:form id="navigation">
+            <ul>
+                <li><h:link value="Home" outcome="index.xhtml" /></li>
+                <li><h:link value="Appointment" outcome="appointment.xhtml" /></li>
+                <li><h:link value="Contacts" outcome="contacts.xhtml" /></li>
+                <li><h:link value="Reports" /></li>
+                <li><h:commandLink value="Logout" action="#{userCtrl.logout}" /></li>
+            </ul>
+        </h:form>
     </h:body>
 </html>
 

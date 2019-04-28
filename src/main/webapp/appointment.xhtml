@@ -5,48 +5,60 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Appointment</title>
+        <h:outputStylesheet name="CSS/navStyle.css" />
         <h:outputStylesheet name="CSS/formStyle.css" />
     </h:head>
     <h:body>
-        <h:form id="appointForm">
-            <h1>Create Appointment</h1>
-            <div>
-                <h:outputLabel value="Start Date (DD/MM/YYYY):"/>
-                <h:inputText id="startDate" value="#{appointmentCtrl.newAppointment.startDate}" required="true" validatorMessage="Date must be written as DD/MM/YYYY">
-                    <f:convertDateTime pattern="dd/mm/yyyy"/>
-                </h:inputText>
-                <h:message for="startDate" class="errorMsg"></h:message>
-            </div>
-            <div>
-                <h:outputLabel value="Start Time (HH:MM):"/>
-                <h:inputText id="startTime" value="#{appointmentCtrl.newAppointment.startTime}" required="true" validatorMessage="Time must be written as HH:MM">
-                    <f:convertDateTime type="time" timeZone="GMT+1" pattern="HH:mm" />
-                </h:inputText>
-                <h:message for="startTime" class="errorMsg"></h:message>
-            </div>
-            <div>
-                <h:outputLabel value="End Time (HH:MM):"/>
-                <h:inputText id="endTime" value="#{appointmentCtrl.newAppointment.endTime}" required="true" validatorMessage="Time must be written as HH:MM">
-                    <f:convertDateTime type="time" timeZone="GMT+1" pattern="HH:mm" />
-                </h:inputText>
-                <h:message for="endTime" class="errorMsg"></h:message>
-            </div>
-            <div>
-                <h:outputLabel value="Users:"/>
-                <h:selectManyListbox id="userList" value="#{appointmentCtrl.userArray}">
-                    <f:selectItems value="#{userCtrl.allUsers}" var="user" itemLabel="#{user.firstName} #{user.lastName}" itemValue="#{user.username}" />
-                </h:selectManyListbox>
-                <h:message for="userList" class="errorMsg"></h:message>
-            </div>
-            <div>
-                <h:outputLabel value="Description:"/>
-                <h:inputTextarea id="description" value="#{appointmentCtrl.newAppointment.description}" required="true" />
-                <h:message for="description" class="errorMsg"></h:message>
-            </div>
-            <div>
-                <h:commandButton action="#{appointmentCtrl.insertAppointment()}" value="Submit"/>
-            </div>
+        <h:form id="navigation">
+            <ul>
+                <li><h:link value="Home" outcome="index.xhtml" /></li>
+                <li><h:link value="Appointment" outcome="appointment.xhtml" /></li>
+                <li><h:link value="Contacts" outcome="contacts.xhtml" /></li>
+                <li><h:link value="Reports" /></li>
+                <li><h:commandLink value="Logout" action="#{userCtrl.logout}" /></li>
+            </ul>
         </h:form>
+        <div class="wrapper">
+            <h:form id="appointForm">
+                <h1>Create Appointment</h1>
+                <div>
+                    <h:outputLabel value="Start Date (DD/MM/YYYY):"/>
+                    <h:inputText id="startDate" value="#{appointmentCtrl.newAppointment.startDate}" required="true" validatorMessage="Date must be written as DD/MM/YYYY">
+                        <f:convertDateTime pattern="dd/mm/yyyy"/>
+                    </h:inputText>
+                    <h:message for="startDate" class="errorMsg"></h:message>
+                </div>
+                <div>
+                    <h:outputLabel value="Start Time (HH:MM):"/>
+                    <h:inputText id="startTime" value="#{appointmentCtrl.newAppointment.startTime}" required="true" validatorMessage="Time must be written as HH:MM">
+                        <f:convertDateTime type="time" timeZone="GMT+1" pattern="HH:mm" />
+                    </h:inputText>
+                    <h:message for="startTime" class="errorMsg"></h:message>
+                </div>
+                <div>
+                    <h:outputLabel value="End Time (HH:MM):"/>
+                    <h:inputText id="endTime" value="#{appointmentCtrl.newAppointment.endTime}" required="true" validatorMessage="Time must be written as HH:MM">
+                        <f:convertDateTime type="time" timeZone="GMT+1" pattern="HH:mm" />
+                    </h:inputText>
+                    <h:message for="endTime" class="errorMsg"></h:message>
+                </div>
+                <div>
+                    <h:outputLabel value="Users:"/>
+                    <h:selectManyListbox id="userList" value="#{appointmentCtrl.userArray}">
+                        <f:selectItems value="#{userCtrl.nonOwners}" var="user" itemLabel="#{user.firstName} #{user.lastName}" itemValue="#{user.username}" />
+                    </h:selectManyListbox>
+                    <h:message for="userList" class="errorMsg"></h:message>
+                </div>
+                <div>
+                    <h:outputLabel value="Description:"/>
+                    <h:inputTextarea id="description" value="#{appointmentCtrl.newAppointment.description}" required="true" />
+                    <h:message for="description" class="errorMsg"></h:message>
+                </div>
+                <div>
+                    <h:commandButton action="#{appointmentCtrl.insertAppointment()}" value="Submit"/>
+                </div>
+            </h:form>
+        </div>
     </h:body>
 </html>
 

@@ -7,24 +7,26 @@
         <h:outputStylesheet name="CSS/formStyle.css" />
     </h:head>
     <h:body>
-        <h:form id="loginID">
-            <h1>Login</h1>
-            <div>
-                <h:outputLabel value="Username / Email: "/>
-                <h:inputText id="username" value="#{userCtrl.newUser.username}"/>
-            </div>
-            <div>
-                <h:outputLabel value="Password:"/>
-                <h:inputSecret id="password" value="#{userCtrl.newUser.password}"/>
-            </div>
-            <div>
-                <h:message for="logbttn" class="errorMsg"></h:message>
-                <h:commandButton id="logbttn" action="#{userCtrl.loginUser()}" value="Login"/>
-            </div>
-            <div>
-                <h:link value="Create an account" outcome="user.xhtml?faces-redirect=true" />
-            </div>
-        </h:form>
+        <div class="wrapper">
+            <h:form id="loginID">
+                <h1>Login</h1>
+                <div>
+                    <h:outputLabel value="Username / Email: "/>
+                    <h:inputText id="username" value="#{userCtrl.newUser.username}"/>
+                </div>
+                <div>
+                    <h:outputLabel value="Password:"/>
+                    <h:inputSecret id="password" value="#{userCtrl.newUser.password}"/>
+                </div>
+                <div>
+                    <h:message for="logbttn" class="errorMsg"></h:message>
+                    <h:commandButton id="logbttn" action="#{userCtrl.loginUser()}" value="Login"/>
+                </div>
+                <div>
+                    <h:link value="Create an account" outcome="user.xhtml?faces-redirect=true" />
+                </div>
+            </h:form>
+        </div>
     </h:body>
 </html>
 
