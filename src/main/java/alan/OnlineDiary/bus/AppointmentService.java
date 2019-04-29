@@ -61,10 +61,12 @@ public class AppointmentService {
         Boolean appointmentClash = false;
         List<Appointment> userApps;
         for (User user : users) {
+            // Get all exisiting appointments for a each user
             userApps = user.getAppointments();
             if (!appointmentClash) {
                 for (Appointment app : userApps) {
-                    if ((a.getStartTime().after(app.getStartTime()) || a.getStartTime().compareTo(app.getStartTime()) == 0)
+                    if (a.getStartDate().equals(app.getStartDate()) &&
+                            (a.getStartTime().after(app.getStartTime()) || a.getStartTime().compareTo(app.getStartTime()) == 0)
                             && (a.getEndTime().before(app.getEndTime()) || a.getEndTime().compareTo(app.getEndTime()) == 0)) {
                         appointmentClash = true;
                     }
