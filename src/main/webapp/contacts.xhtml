@@ -25,8 +25,13 @@
                          headerClass = "userTableHeader" 
                          rowClasses = "userTableRow">
                 <h:column>    				
-                    <f:facet name = "header">Name: </f:facet>    				
+                    <f:facet name = "header">First Name: </f:facet>    				
                         #{user.firstName}
+                </h:column>
+                
+                <h:column>    				
+                    <f:facet name = "header">Last Name: </f:facet>    				
+                        #{user.lastName}
                 </h:column>
 
                 <h:column>

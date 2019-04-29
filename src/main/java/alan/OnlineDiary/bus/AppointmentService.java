@@ -34,26 +34,43 @@ public class AppointmentService {
             // Set the owner of appointment to current logged in user 
             FacesContext context = FacesContext.getCurrentInstance();
             User owner = (User) context.getExternalContext().getSessionMap().get("user");
-            String username = owner.getUsername();
-            a.setOwner(username);
+            a.setOwner(owner.getUsername());
             // Set all users associated with the appointment in joining table
             List<User> userList = new ArrayList<>();
             userList.add(owner);
             for (String user : userArray) {
                 userList.add(uf.findUsersByUsername(user));
             }
-            a.setUsers(userList);
-            af.create(a);
-            return true;
+            Boolean appointmentClash = checkClash(a, userList);
+            if (!appointmentClash) {
+                a.setUsers(userList);
+                af.create(a);
+                return true;
+            } else {
+                FacesContext.getCurrentInstance().addMessage("appointForm:userList", new FacesMessage("There is an appointment time clash"));
+                return false;
+            }
         } else {
             FacesContext.getCurrentInstance().addMessage("appointForm:startTime", new FacesMessage("Start Time must be before End Time"));
             return false;
         }
-        
+
     }
 
-    public Boolean checkClash(Appointment a, User u) {
+    public Boolean checkClash(Appointment a, List<User> users) {
         Boolean appointmentClash = false;
+        List<Appointment> userApps;
+        for (User user : users) {
+            userApps = user.getAppointments();
+            if (!appointmentClash) {
+                for (Appointment app : userApps) {
+                    if ((a.getStartTime().after(app.getStartTime()) || a.getStartTime().compareTo(app.getStartTime()) == 0)
+                            && (a.getEndTime().before(app.getEndTime()) || a.getEndTime().compareTo(app.getEndTime()) == 0)) {
+                        appointmentClash = true;
+                    }
+                }
+            }
+        }
         return appointmentClash;
     }
 
