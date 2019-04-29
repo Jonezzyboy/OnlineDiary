@@ -32,14 +32,4 @@ public class AppointmentFacade extends AbstractFacade<Appointment> {
         super(Appointment.class);
     }
     
-    public Appointment findAppointmentByUser(User user) {
-        try {
-            TypedQuery<Appointment> query = em.createQuery(
-                    "SELECT DISTINCT a FROM Appointment a WHERE a.users = :user", Appointment.class);
-            return (Appointment)query.setParameter("user", user).setMaxResults(1).getSingleResult();
-        } catch(NoResultException e){
-            return null;
-        }
-    }
-    
 }
