@@ -7,10 +7,12 @@ package alan.OnlineDiary.ctrl;
 
 import alan.OnlineDiary.bus.AppointmentService;
 import alan.OnlineDiary.ents.Appointment;
+import alan.OnlineDiary.ents.User;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -29,6 +31,22 @@ public class AppointmentCtrl {
     private Appointment newAppointment = new Appointment();
     private String[] userArray;
     private List<Appointment> allApps;
+    private List<User> allUsers;
+
+    public List<User> getAllUsers() {
+        return allUsers;
+    }
+
+    public void setAllUsers(List<User> allUsers) {
+        this.allUsers = allUsers;
+    }
+    
+    public List<User> getNonOwners(Appointment a) {
+        allUsers = a.getUsers();
+        User owner = as.getOwnerObj(a.getOwner());
+        allUsers.remove(owner);
+        return allUsers;
+    }
 
     public List<Appointment> getAllApps() {
         allApps = as.findAllApps();

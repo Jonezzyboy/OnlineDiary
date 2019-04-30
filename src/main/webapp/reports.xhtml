@@ -58,8 +58,8 @@
 
                 <h:column>    				
                     <f:facet name = "header">Users: </f:facet>    				
-                    <ui:repeat value="#{app.users}" var="user">
-                        <h:outputText value="#{user.username}"/>
+                    <ui:repeat value="#{appointmentCtrl.getNonOwners(app)}" var="user" varStatus="loop">
+                        #{user.username}#{not loop.last ? ', ' : ''}
                     </ui:repeat>
                 </h:column>
 

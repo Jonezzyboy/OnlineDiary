@@ -87,7 +87,7 @@ public class AppointmentService {
     public Boolean checkTimes(Appointment a) {
         Boolean timeValid = true;
         Date currentDate = new Date();
-        Date appStartDate = joinStartTimes(a.getStartTime());
+        Date appStartDate = joinStartTimes(a.getStartDate(), a.getStartTime());
         if (appStartDate.before(currentDate)) {
             timeValid = false;
             FacesContext.getCurrentInstance().addMessage("appointForm:startDate", new FacesMessage("Start Date must not be set in the past"));
@@ -98,18 +98,22 @@ public class AppointmentService {
         return timeValid;
     }
 
-    public Date joinStartTimes(Date d) {
+    public Date joinStartTimes(Date startDate, Date time) {
         // Joins the start date and start time
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
-        String times = dateFormat.format(d);
+        String times = dateFormat.format(time);
         String[] hourMin = times.split(":");
         int hour = Integer.parseInt(hourMin[0]);
         int mins = Integer.parseInt(hourMin[1]);
         Calendar cal = Calendar.getInstance();
-        cal.setTime(d);
+        cal.setTime(startDate);
         cal.set(Calendar.HOUR, hour);
         cal.set(Calendar.MINUTE, mins);
         Date appStartDate = cal.getTime();
         return appStartDate;
+    }
+
+    public User getOwnerObj(String owner){
+        return uf.findUsersByUsername(owner);
     }
 }
