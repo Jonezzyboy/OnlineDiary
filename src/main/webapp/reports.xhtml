@@ -8,6 +8,7 @@
         <title>Reports</title>
         <h:outputStylesheet name="CSS/navStyle.css" />
         <h:outputStylesheet name="CSS/tableStyle.css" />
+        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
     </h:head>
     <h:body>
         <h:form id="navigation">
@@ -61,6 +62,12 @@
                     <ui:repeat value="#{appointmentCtrl.getNonOwners(app)}" var="user" varStatus="loop">
                         #{user.username}#{not loop.last ? ', ' : ''}
                     </ui:repeat>
+                </h:column>
+
+                <h:column>
+                    <h:form>
+                        <h:commandButton value="&#xf1f8;" class="fa fa-trash fa-lg" />
+                    </h:form>
                 </h:column>
 
             </h:dataTable> 

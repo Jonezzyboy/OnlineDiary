@@ -6,12 +6,9 @@
 package alan.OnlineDiary.pers;
 
 import alan.OnlineDiary.ents.Appointment;
-import alan.OnlineDiary.ents.User;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 
 /**
  *
