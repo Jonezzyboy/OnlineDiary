@@ -68,3 +68,12 @@ td, th {
     vertical-align: middle;
     border-radius: 2px;
 }
+
+.errorMsg{
+    color: red;
+    padding-top: 50px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+

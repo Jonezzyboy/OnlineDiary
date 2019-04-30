@@ -113,7 +113,18 @@ public class AppointmentService {
         return appStartDate;
     }
 
-    public User getOwnerObj(String owner){
+    public User getOwnerObj(String owner) {
         return uf.findUsersByUsername(owner);
+    }
+
+    public Boolean deleteAppointment(Appointment a) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        User owner = (User) context.getExternalContext().getSessionMap().get("user");
+        if (owner.getUsername().equals(a.getOwner())) {
+            af.remove(a);
+            return true;
+        }
+        context.addMessage("deleteError:deleteAppMsg", new FacesMessage("You are not the owner of this appointment"));
+        return false;
     }
 }

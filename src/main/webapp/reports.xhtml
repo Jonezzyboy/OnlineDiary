@@ -66,11 +66,17 @@
 
                 <h:column>
                     <h:form>
-                        <h:commandButton value="&#xf1f8;" class="fa fa-trash fa-lg" />
+                        <h:commandButton action="#{appointmentCtrl.deleteAppointment(app)}" value="&#xf1f8;" class="fa fa-trash fa-lg" />
                     </h:form>
                 </h:column>
 
             </h:dataTable> 
+
+            <h:form id="deleteError">
+                <h:outputText id="deleteAppMsg" value=""/>
+                <h:message for="deleteAppMsg" class="errorMsg"></h:message>
+            </h:form>
+
         </div>
     </h:body>
 </html>

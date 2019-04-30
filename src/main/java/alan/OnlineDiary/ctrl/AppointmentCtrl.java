@@ -82,5 +82,13 @@ public class AppointmentCtrl {
         } else {
             return null;
         }
-    } 
+    }
+    
+    public String deleteAppointment(Appointment a) {
+        if (as.deleteAppointment(a) == true) {
+            return "reports.xhtml?faces-redirect=true";
+        } else {
+            return null;
+        }
+    }
 }
