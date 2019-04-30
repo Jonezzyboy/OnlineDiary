@@ -69,6 +69,21 @@ td, th {
     border-radius: 2px;
 }
 
+.inputs{
+    float: left;
+    padding-right: 20px
+}
+
+input[type=text],
+input[type=password]{
+    width: 100%;
+    padding: 8px 4px 8px 10px;
+    margin-bottom: 15px;
+    border: 1px solid black;
+    background: rgba(0,0,0,0.1);
+    border-radius: 2px;
+}
+
 .errorMsg{
     color: red;
     padding-top: 50px;

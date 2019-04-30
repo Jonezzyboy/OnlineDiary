@@ -22,6 +22,18 @@
         </h:form>
         <div class="wrapper">
             <h1>Reports</h1>
+            <h:form>
+                <div class="inputs">
+                    <h:outputLabel value="Username: "/>
+                    <h:inputText id="username" value="" />
+                    <h:message for="username" class="errorMsg"></h:message>
+                </div>
+                <div class="inputs">
+                    <h:outputLabel value="Password:"/>
+                    <h:inputSecret id="password" value="" redisplay = "true" />
+                    <h:message for="password" class="errorMsg"></h:message>
+                </div>
+            </h:form>
             <h:dataTable value = "#{appointmentCtrl.allApps}" var = "app" 
                          styleClass = "appTable" 
                          headerClass = "appTableHeader" 
