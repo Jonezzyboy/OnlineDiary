@@ -32,6 +32,10 @@ public class AppointmentService {
     @EJB
     private UserFacade uf;
 
+    public List<Appointment> findAllApps() {
+        return af.findAll();
+    }
+
     public Boolean createNewAppointment(Appointment a, String[] userArray) {
         Boolean timeValid = checkTimes(a);
         if (timeValid) {
@@ -93,8 +97,8 @@ public class AppointmentService {
         }
         return timeValid;
     }
-    
-    public Date joinStartTimes(Date d){
+
+    public Date joinStartTimes(Date d) {
         // Joins the start date and start time
         DateFormat dateFormat = new SimpleDateFormat("HH:mm");
         String times = dateFormat.format(d);

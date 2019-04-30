@@ -7,7 +7,6 @@ package alan.OnlineDiary.ctrl;
 
 import alan.OnlineDiary.bus.AppointmentService;
 import alan.OnlineDiary.ents.Appointment;
-import alan.OnlineDiary.ents.User;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -29,6 +28,16 @@ public class AppointmentCtrl {
     
     private Appointment newAppointment = new Appointment();
     private String[] userArray;
+    private List<Appointment> allApps;
+
+    public List<Appointment> getAllApps() {
+        allApps = as.findAllApps();
+        return allApps;
+    }
+
+    public void setAllApps(List<Appointment> allApps) {
+        this.allApps = allApps;
+    }
 
     public String[] getUserArray() {
         return userArray;
