@@ -62,7 +62,7 @@ table > tbody > tr > td {
 }
 
 td, th {
-    padding: 20px 45px 20px 45px;
+    padding: 20px 30px 20px 30px;
     display: table-cell;
     text-align: left;
     vertical-align: middle;

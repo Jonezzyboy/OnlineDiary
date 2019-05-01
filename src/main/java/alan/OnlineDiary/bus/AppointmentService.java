@@ -117,10 +117,12 @@ public class AppointmentService {
         return uf.findUsersByUsername(owner);
     }
 
-    public Boolean deleteAppointment(Appointment a) {
+    public Boolean deleteAppointment(Appointment a, User credentials) {
         FacesContext context = FacesContext.getCurrentInstance();
-        User owner = (User) context.getExternalContext().getSessionMap().get("user");
-        if (owner.getUsername().equals(a.getOwner())) {
+        User sessionOwner = (User) context.getExternalContext().getSessionMap().get("user");
+        User userCreds = uf.findUserByCredentials(credentials.getUsername(), credentials.getPassword());
+        User appOwner = uf.findUsersByUsername(a.getOwner());
+        if (sessionOwner.getUsername().equals(a.getOwner()) || appOwner == userCreds) {
             af.remove(a);
             return true;
         }

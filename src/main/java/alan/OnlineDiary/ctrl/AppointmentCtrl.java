@@ -27,11 +27,21 @@ public class AppointmentCtrl {
      */
     public AppointmentCtrl() {
     }
-    
+
     private Appointment newAppointment = new Appointment();
     private String[] userArray;
     private List<Appointment> allApps;
     private List<User> allUsers;
+    private User userCredentials = new User();;
+
+    public User getUserCredentials() {
+        return userCredentials;
+    }
+
+    public void setUserCredentials(User userCredentials) {
+        this.userCredentials = userCredentials;
+    }
+    
 
     public List<User> getAllUsers() {
         return allUsers;
@@ -40,7 +50,7 @@ public class AppointmentCtrl {
     public void setAllUsers(List<User> allUsers) {
         this.allUsers = allUsers;
     }
-    
+
     public List<User> getNonOwners(Appointment a) {
         allUsers = a.getUsers();
         User owner = as.getOwnerObj(a.getOwner());
@@ -72,10 +82,10 @@ public class AppointmentCtrl {
     public void setNewAppointment(Appointment newAppointment) {
         this.newAppointment = newAppointment;
     }
-    
+
     @EJB
     private AppointmentService as;
-    
+
     public String insertAppointment() {
         if (as.createNewAppointment(newAppointment, userArray) == true) {
             return "index.xhtml?faces-redirect=true";
@@ -83,9 +93,9 @@ public class AppointmentCtrl {
             return null;
         }
     }
-    
+
     public String deleteAppointment(Appointment a) {
-        if (as.deleteAppointment(a) == true) {
+        if (as.deleteAppointment(a, userCredentials) == true) {
             return "reports.xhtml?faces-redirect=true";
         } else {
             return null;

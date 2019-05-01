@@ -25,64 +25,63 @@
             <h:form>
                 <div class="inputs">
                     <h:outputLabel value="Username: "/>
-                    <h:inputText id="username" value="" />
+                    <h:inputText id="username" value="#{appointmentCtrl.userCredentials.username}" />
                     <h:message for="username" class="errorMsg"></h:message>
                 </div>
                 <div class="inputs">
                     <h:outputLabel value="Password:"/>
-                    <h:inputSecret id="password" value="" redisplay = "true" />
+                    <h:inputSecret id="password" value="#{appointmentCtrl.userCredentials.password}" redisplay = "true" />
                     <h:message for="password" class="errorMsg"></h:message>
                 </div>
-            </h:form>
-            <h:dataTable value = "#{appointmentCtrl.allApps}" var = "app" 
-                         styleClass = "appTable" 
-                         headerClass = "appTableHeader" 
-                         rowClasses = "appTableRow">
-                <h:column>    				
-                    <f:facet name = "header">Date: </f:facet>    				
-                    <h:outputText value="#{app.startDate}" >
-                        <f:convertDateTime type="date" timeZone="GMT+1" pattern="dd/MM/yyyy" />
-                    </h:outputText>
-                </h:column>
+                <h:dataTable value = "#{appointmentCtrl.allApps}" var = "app" 
+                             styleClass = "appTable" 
+                             headerClass = "appTableHeader" 
+                             rowClasses = "appTableRow">
+                    <h:column>    				
+                        <f:facet name = "header">Date: </f:facet>    				
+                        <h:outputText value="#{app.startDate}" >
+                            <f:convertDateTime type="date" timeZone="GMT+1" pattern="dd/MM/yyyy" />
+                        </h:outputText>
+                    </h:column>
 
-                <h:column>    				
-                    <f:facet name = "header">Start: </f:facet>    				
-                    <h:outputText value="#{app.startTime}" >
-                        <f:convertDateTime type="time" timeZone="GMT+1" pattern="HH:mm" />
-                    </h:outputText>
-                </h:column>
+                    <h:column>    				
+                        <f:facet name = "header">Start: </f:facet>    				
+                        <h:outputText value="#{app.startTime}" >
+                            <f:convertDateTime type="time" timeZone="GMT+1" pattern="HH:mm" />
+                        </h:outputText>
+                    </h:column>
 
-                <h:column>    				
-                    <f:facet name = "header">End: </f:facet>    				
-                    <h:outputText value="#{app.endTime}" >
-                        <f:convertDateTime type="time" timeZone="GMT+1" pattern="HH:mm" />
-                    </h:outputText>
-                </h:column>
+                    <h:column>    				
+                        <f:facet name = "header">End: </f:facet>    				
+                        <h:outputText value="#{app.endTime}" >
+                            <f:convertDateTime type="time" timeZone="GMT+1" pattern="HH:mm" />
+                        </h:outputText>
+                    </h:column>
 
-                <h:column>    				
-                    <f:facet name = "header">Owner: </f:facet>    				
-                        #{app.owner}
-                </h:column>
+                    <h:column>    				
+                        <f:facet name = "header">Owner: </f:facet>    				
+                            #{app.owner}
+                    </h:column>
 
-                <h:column>    				
-                    <f:facet name = "header">Description: </f:facet>    				
-                        #{app.description}
-                </h:column>
+                    <h:column>    				
+                        <f:facet name = "header">Description: </f:facet>    				
+                            #{app.description}
+                    </h:column>
 
-                <h:column>    				
-                    <f:facet name = "header">Users: </f:facet>    				
-                    <ui:repeat value="#{appointmentCtrl.getNonOwners(app)}" var="user" varStatus="loop">
-                        #{user.username}#{not loop.last ? ', ' : ''}
-                    </ui:repeat>
-                </h:column>
+                    <h:column>    				
+                        <f:facet name = "header">Users: </f:facet>    				
+                        <ui:repeat value="#{appointmentCtrl.getNonOwners(app)}" var="user" varStatus="loop">
+                            #{user.username}#{not loop.last ? ', ' : ''}
+                        </ui:repeat>
+                    </h:column>
 
-                <h:column>
-                    <h:form>
+                    <h:column>
+
                         <h:commandButton action="#{appointmentCtrl.deleteAppointment(app)}" value="&#xf1f8;" class="fa fa-trash fa-lg" />
-                    </h:form>
-                </h:column>
 
-            </h:dataTable> 
+                    </h:column>
+                </h:dataTable> 
+            </h:form>
 
             <h:form id="deleteError">
                 <h:outputText id="deleteAppMsg" value=""/>

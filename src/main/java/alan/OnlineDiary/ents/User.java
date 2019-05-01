@@ -36,7 +36,7 @@ public class User implements Serializable {
     private String phone;
     private String address;
     private String postcode;
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
     public List<Appointment> getAppointments() {
