@@ -23,6 +23,14 @@ public class UserService {
     @EJB
     private UserFacade uf;
 
+    /**
+     * Create user
+     *
+     * @param u The user to add
+     * @param confirm The confirm password string
+     *
+     * @return Whether the user was created or not
+     */
     public Boolean createNewUser(User u, String confirm) {
         Boolean passwordsMatch = checkPasswords(u, confirm);
         Boolean userExists = checkDuplicates(u);
@@ -34,30 +42,55 @@ public class UserService {
         }
     }
 
+    /**
+     * Check for duplicate users
+     *
+     * @param u The user being compared
+     *
+     * @return Whether the user exists already or not
+     */
     public Boolean checkDuplicates(User u) {
+        FacesContext context = FacesContext.getCurrentInstance();
         Boolean userExists = true;
         if (uf.findUsersByUsername(u.getUsername()) == null && uf.findUsersByEmail(u.getEmail()) == null) {
             userExists = false;
         }
         if (uf.findUsersByUsername(u.getUsername()) != null) {
-            FacesContext.getCurrentInstance().addMessage("createID:username", new FacesMessage("Username already exists"));
+            context.addMessage("createID:username", new FacesMessage("Username already exists"));
         }
         if (uf.findUsersByEmail(u.getEmail()) != null) {
-            FacesContext.getCurrentInstance().addMessage("createID:email", new FacesMessage("Email already exists"));
+            context.addMessage("createID:email", new FacesMessage("Email already exists"));
         }
         return userExists;
     }
 
+    /**
+     * Compare password strings
+     *
+     * @param u The user being compared
+     * @param confirm The confirm password string
+     *
+     * @return Whether the password and confirm passwords match
+     */
     public Boolean checkPasswords(User u, String confirm) {
+        FacesContext context = FacesContext.getCurrentInstance();
         Boolean passwordsMatch = false;
         if (u.getPassword().equals(confirm)) {
             passwordsMatch = true;
         } else {
-            FacesContext.getCurrentInstance().addMessage("createID:confirm", new FacesMessage("Passwords do not match"));
+            context.addMessage("createID:confirm", new FacesMessage("Passwords do not match"));
         }
         return passwordsMatch;
     }
 
+    /**
+     * Validate a user's log in attempt
+     *
+     * @param username The username string
+     * @param password The password string
+     *
+     * @return Whether the password and confirm passwords match
+     */
     public User validateLogin(String username, String password) {
         User user = uf.findUserByCredentials(username, password);
         if (user == null) {
@@ -66,6 +99,11 @@ public class UserService {
         return user;
     }
 
+    /**
+     * Get all users
+     *
+     * @return List of all user objects
+     */
     public List<User> findAllUsers() {
         return uf.findAll();
     }

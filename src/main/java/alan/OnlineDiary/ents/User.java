@@ -39,83 +39,142 @@ public class User implements Serializable {
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
+    /**
+     * @return List of appointments
+     */
     public List<Appointment> getAppointments() {
         return appointments;
     }
 
+    /**
+     * @param appointments List of appointments
+     */
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
 
-    
+    /**
+     * @return Address string
+     */
     public String getAddress() {
         return address;
     }
 
+    /**
+     * @param address Address string
+     */
     public void setAddress(String address) {
         this.address = address;
     }
 
+    /**
+     * @return Postcode string
+     */
     public String getPostcode() {
         return postcode;
     }
 
+    /**
+     * @param postcode Postcode string
+     */
     public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 
+    /**
+     * @return Username string
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * @param username Username string
+     */
     public void setUsername(String username) {
         this.username = username;
     }
 
+    /**
+     * @return Password string
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * @param password Password string
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     * @return Email string
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * @param email Email string
+     */
     public void setEmail(String email) {
         this.email = email;
     }
 
+    /**
+     * @return Phone string
+     */
     public String getPhone() {
         return phone;
     }
 
+    /**
+     * @param phone Phone string
+     */
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    /**
+     * @return First Name string
+     */
     public String getFirstName() {
         return firstName;
     }
-    
+
+    /**
+     * @param firstName First Name string
+     */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-    
+
+    /**
+     * @return Last Name string
+     */
     public String getLastName() {
         return lastName;
     }
 
+    /**
+     * @param lastName Last Name string
+     */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    /**
+     * @return ID
+     */
     public Long getId() {
         return user_id;
     }
 
+    /**
+     * @param user_id ID
+     */
     public void setId(Long user_id) {
         this.user_id = user_id;
     }
@@ -144,5 +203,5 @@ public class User implements Serializable {
     public String toString() {
         return "alan.OnlineDiary.ents.User[ id=" + user_id + " ]";
     }
-    
+
 }

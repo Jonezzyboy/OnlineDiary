@@ -32,18 +32,38 @@ public class UserCtrl {
     private List<User> allUsers;
     private String confirm;
 
+    /**
+     * Get the confirm password
+     *
+     * @return Confirm password string
+     */
     public String getConfirm() {
         return confirm;
     }
 
+    /**
+     * Set the confirm password
+     *
+     * @param confirm Confirm password string
+     */
     public void setConfirm(String confirm) {
         this.confirm = confirm;
     }
 
+    /**
+     * Get a User object
+     *
+     * @return User object
+     */
     public User getNewUser() {
         return newUser;
     }
 
+    /**
+     * Set all the attributes for a User object
+     *
+     * @param newUser User object
+     */
     public void setNewUser(User newUser) {
         this.newUser = newUser;
     }
@@ -51,11 +71,21 @@ public class UserCtrl {
     @EJB
     private UserService us;
 
+    /**
+     * Get all users
+     *
+     * @return List of all users
+     */
     public List<User> getAllUsers() {
         allUsers = us.findAllUsers();
         return allUsers;
     }
 
+    /**
+     * Get all non-owner users
+     *
+     * @return A list of users excluding an appointment's owner
+     */
     public List<User> getNonOwners() {
         allUsers = us.findAllUsers();
         FacesContext context = FacesContext.getCurrentInstance();
@@ -64,6 +94,11 @@ public class UserCtrl {
         return allUsers;
     }
 
+    /**
+     * Redirects after creation of a user
+     *
+     * @return The path of the login page
+     */
     public String insertUser() {
         if (us.createNewUser(newUser, confirm) == true) {
             return "login.xhtml?faces-redirect=true";
@@ -72,6 +107,11 @@ public class UserCtrl {
         }
     }
 
+    /**
+     * Redirects after a user has logged in
+     *
+     * @return The path of the index page
+     */
     public String loginUser() {
         User user = us.validateLogin(newUser.getUsername(), newUser.getPassword());
         FacesContext context = FacesContext.getCurrentInstance();
@@ -85,6 +125,11 @@ public class UserCtrl {
         }
     }
 
+    /**
+     * Redirects after a user has logged out
+     *
+     * @return The path of the login page
+     */
     public String logout() {
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         return "login.xhtml?faces-redirect=true";

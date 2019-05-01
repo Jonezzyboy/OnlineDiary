@@ -124,7 +124,9 @@ public class LoginFilter implements Filter {
     }
 
     /**
-     * Return the filter configuration object for this filter.
+     * Return the filter configuration object for this filter
+     * 
+     * @return the filter configuration object.
      */
     public FilterConfig getFilterConfig() {
         return (this.filterConfig);
@@ -147,6 +149,8 @@ public class LoginFilter implements Filter {
 
     /**
      * Init method for this filter
+     * 
+     * @param filterConfig The filter configuration object
      */
     public void init(FilterConfig filterConfig) {        
         this.filterConfig = filterConfig;

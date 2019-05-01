@@ -31,43 +31,72 @@ public class UserFacade extends AbstractFacade<User> {
         super(User.class);
     }
 
+    /**
+     * Find a user using their username
+     *
+     * @param username The username string
+     *
+     * @return Query result as a user object
+     */
     public User findUsersByUsername(String username) {
         try {
             TypedQuery<User> query = em.createQuery(
                     "SELECT u FROM User u WHERE u.username = :username", User.class);
             return query.setParameter("username", username).getSingleResult();
-        } catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
     }
-        
+
+    /**
+     * Find a user using their username and password
+     *
+     * @param username The username string
+     * @param password The password string
+     *
+     * @return Query result as a user object
+     */
     public User findUserByCredentials(String username, String password) {
         try {
             TypedQuery<User> query = em.createQuery(
                     "SELECT u FROM User u WHERE (u.username = :username AND u.password = :password)"
-                            + "OR(u.email = :username AND u.password = :password)", User.class);
-            return (User)query.setParameter("username", username).setParameter("password", password).getSingleResult();
-        } catch(NoResultException e){
+                    + "OR(u.email = :username AND u.password = :password)", User.class);
+            return (User) query.setParameter("username", username).setParameter("password", password).getSingleResult();
+        } catch (NoResultException e) {
             return null;
         }
     }
-    
+
+    /**
+     * Find a user using their email address
+     *
+     * @param email The email string
+     *
+     * @return Query result as a user object
+     */
     public User findUsersByEmail(String email) {
         try {
             TypedQuery<User> query = em.createQuery(
                     "SELECT u FROM User u WHERE u.email = :email", User.class);
             return query.setParameter("email", email).getSingleResult();
-        } catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
     }
-    
+
+    /**
+     * Find a user's ID using their username
+     *
+     * @param username The username string
+     *
+     * @return Query result as a user object
+     */
     public User findUserIDByUsername(String username) {
         try {
             TypedQuery<User> query = em.createQuery(
                     "SELECT u.user_id FROM User u WHERE u.username = :username", User.class);
             return query.getSingleResult();
-        } catch(NoResultException e){
+        } catch (NoResultException e) {
             return null;
         }
     }

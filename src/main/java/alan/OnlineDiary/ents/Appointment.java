@@ -38,58 +38,100 @@ public class Appointment implements Serializable {
     private String description;
     private String owner;
 
+    /**
+     * @return List of all users
+     */
     public List<User> getUsers() {
         return users;
     }
 
+    /**
+     * @param users List of all users
+     */
     public void setUsers(List<User> users) {
         this.users = users;
     }
 
+    /**
+     * @return Description string
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * @param description Description string
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * @return Owner string
+     */
     public String getOwner() {
         return owner;
     }
 
+    /**
+     * @param owner Owner string
+     */
     public void setOwner(String owner) {
         this.owner = owner;
     }
 
+    /**
+     * @return Start Date
+     */
     public Date getStartDate() {
         return startDate;
     }
 
+    /**
+     * @param startDate Start Date
+     */
     public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
+    /**
+     * @return Start Time
+     */
     public Date getStartTime() {
         return startTime;
     }
 
+    /**
+     * @param startTime Start Time
+     */
     public void setStartTime(Date startTime) {
         this.startTime = startTime;
     }
 
+    /**
+     * @return End Time
+     */
     public Date getEndTime() {
         return endTime;
     }
 
+    /**
+     * @param endTime End Time
+     */
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
     }
 
+    /**
+     * @return ID
+     */
     public Long getId() {
         return appointment_id;
     }
 
+    /**
+     * @param appointment_id ID
+     */
     public void setId(Long appointment_id) {
         this.appointment_id = appointment_id;
     }
