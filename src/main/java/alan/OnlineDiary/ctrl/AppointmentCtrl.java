@@ -8,10 +8,14 @@ package alan.OnlineDiary.ctrl;
 import alan.OnlineDiary.bus.AppointmentService;
 import alan.OnlineDiary.ents.Appointment;
 import alan.OnlineDiary.ents.User;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -32,8 +36,6 @@ public class AppointmentCtrl {
     private List<Appointment> allApps;
     private List<User> allUsers;
     private User userCredentials = new User();
-
-    ;
 
     /**
      * Get user credentials
@@ -170,5 +172,29 @@ public class AppointmentCtrl {
         } else {
             return null;
         }
+    }
+
+    public Date sortByStartDate(List<Appointment> a) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        if (context.getExternalContext().getSessionMap().get("sorting") == "true" || context.getExternalContext().getSessionMap().get("sorting") == null) {
+            // Ascending Dates
+            Collections.sort(a, new Comparator<Appointment>() {
+                @Override
+                public int compare(Appointment a1, Appointment a2) {
+                    return a1.getStartDate().compareTo(a2.getStartDate());
+                }
+            });
+            context.getExternalContext().getSessionMap().put("sorting", "false");
+        } else {
+            // Descending Dates
+            Collections.sort(a, new Comparator<Appointment>() {
+                @Override
+                public int compare(Appointment a1, Appointment a2) {
+                    return a2.getStartDate().compareTo(a1.getStartDate());
+                }
+            });
+            context.getExternalContext().getSessionMap().put("sorting", "true");
+        }
+        return null;
     }
 }

@@ -7,8 +7,7 @@
     <h:head>
         <title>Reports</title>
         <h:outputStylesheet name="CSS/navStyle.css" />
-        <h:outputStylesheet name="CSS/tableStyle.css" />
-        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome.min-jsf.css" />
+        <h:outputStylesheet name="CSS/formStyle.css" />
     </h:head>
     <h:body>
         <h:form id="navigation">
@@ -21,8 +20,9 @@
             </ul>
         </h:form>
         <div class="wrapper">
-            <h1>Reports</h1>
+            <h1>Appointment Reports</h1>
             <h:form>
+                <h2>Owner's Credentials:</h2>
                 <div class="inputs">
                     <h:outputLabel value="Username: "/>
                     <h:inputText id="username" value="#{appointmentCtrl.userCredentials.username}" />
@@ -38,7 +38,7 @@
                              headerClass = "appTableHeader" 
                              rowClasses = "appTableRow">
                     <h:column>    				
-                        <f:facet name = "header">Date: </f:facet>    				
+                        <f:facet name="header">Date: </f:facet>   				
                         <h:outputText value="#{app.startDate}" >
                             <f:convertDateTime type="date" timeZone="GMT+1" pattern="dd/MM/yyyy" />
                         </h:outputText>
@@ -76,17 +76,19 @@
                     </h:column>
 
                     <h:column>
-
-                        <h:commandButton action="#{appointmentCtrl.deleteAppointment(app)}" value="&#xf1f8;" class="fa fa-trash fa-lg" />
-
+                        <h:commandButton action="#{appointmentCtrl.deleteAppointment(app)}" value="Delete" />
                     </h:column>
                 </h:dataTable> 
+
             </h:form>
 
-            <h:form id="deleteError">
-                <h:outputText id="deleteAppMsg" value=""/>
-                <h:message for="deleteAppMsg" class="errorMsg"></h:message>
-            </h:form>
+            <div>
+                <h:form id="deleteError">
+                    <h:outputText id="deleteAppMsg" value=""/>
+                    <h:message for="deleteAppMsg" class="errorMsg"></h:message>
+                </h:form>
+            </div>
+
 
         </div>
     </h:body>

@@ -93,6 +93,16 @@ public class UserCtrl {
         allUsers.remove(owner);
         return allUsers;
     }
+    
+    /**
+     * Get the current User stored in the session
+     *
+     * @return The logged in User object
+     */
+    public User getLoggedUser(){
+        User sessionUser = (User) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+        return sessionUser;
+    }
 
     /**
      * Redirects after creation of a user

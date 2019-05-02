@@ -179,7 +179,7 @@ public class AppointmentService {
             af.remove(a);
             return true;
         }
-        context.addMessage("deleteError:deleteAppMsg", new FacesMessage("You are not the owner of this appointment"));
+        context.addMessage("deleteError:deleteAppMsg", new FacesMessage("You do not have permission to remove this appointment"));
         return false;
     }
 }

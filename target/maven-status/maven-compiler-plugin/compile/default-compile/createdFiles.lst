@@ -1,7 +1,9 @@
 alan\OnlineDiary\bus\UserService.class
+alan\OnlineDiary\ctrl\AppointmentCtrl$1.class
 alan\OnlineDiary\ctrl\UserCtrl.class
 alan\OnlineDiary\ents\Appointment_.class
 alan\OnlineDiary\bus\AppointmentService.class
+alan\OnlineDiary\ctrl\AppointmentCtrl$2.class
 alan\OnlineDiary\ents\Appointment.class
 alan\OnlineDiary\ents\User.class
 alan\OnlineDiary\ctrl\AppointmentCtrl.class
