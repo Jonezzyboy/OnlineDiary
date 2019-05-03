@@ -22,12 +22,12 @@
             <h1>Appointment Reports</h1>
             <h:form>
                 <h2>Owner's Credentials:</h2>
-                <div class="inputs">
+                <div class="leftInputs">
                     <h:outputLabel value="Username: "/>
                     <h:inputText id="username" value="#{appointmentCtrl.userCredentials.username}" />
                     <h:message for="username" class="errorMsg"></h:message>
                 </div>
-                <div class="inputs">
+                <div class="leftInputs">
                     <h:outputLabel value="Password:"/>
                     <h:inputSecret id="password" value="#{appointmentCtrl.userCredentials.password}" redisplay = "true" />
                     <h:message for="password" class="errorMsg"></h:message>

@@ -174,6 +174,13 @@ public class AppointmentCtrl {
         }
     }
 
+    /**
+     * Sorts the dates of appointment for the index page
+     *
+     * @param a The list of appointments being compared
+     *
+     * @return The ordered dates
+     */
     public Date sortByStartDate(List<Appointment> a) {
         FacesContext context = FacesContext.getCurrentInstance();
         if (context.getExternalContext().getSessionMap().get("sorting") == "true" || context.getExternalContext().getSessionMap().get("sorting") == null) {
